@@ -1,37 +1,33 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\ActivityApproval;
-use App\ActivityApprovalsStatistics;
-use App\Department;
 use App\Enums\AccessAuthority;
 use App\Enums\Activity;
 use App\Enums\RoleIndicatorEnum;
 use App\Enums\StaticConfig;
-use App\Place;
-use App\PromotionCircle;
-use App\User;
+use App\Models\ActivityApproval;
+use App\Models\ActivityApprovalsStatistics;
+use App\Models\Department;
+use App\Models\Place;
+use App\Models\PromotionCircle;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ActivityApprovalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): \Illuminate\Contracts\View\View
     {
         $current_year = date("Y");
         if (isset($_GET['year'])) {
             $current_year = $_GET['year'];
         }
-        $promotion_cirlce = DB::table('promotion_circles')->where('year', $current_year)->where('circle_id', session('circle.id'))->first();
-        if (!$promotion_cirlce) {
-            $promotion_cirlce = new PromotionCircle();
-            $promotion_cirlce->year = $current_year;
+        $promotion_circle = DB::table('promotion_circles')->where('year', $current_year)->where('circle_id', session('circle.id'))->first();
+        if (!$promotion_circle) {
+            $promotion_circle = new PromotionCircle();
+            $promotion_circle->year = $current_year;
         }
         $review_last_year = "";
         $promotion_circle_last_year = DB::table('promotion_circles')->where('circle_id', session('circle.id'))->where('year', ($current_year - 1))->first();
@@ -55,11 +51,11 @@ class ActivityApprovalController extends Controller
         $department = Department::find($place->department_id);
         $department_manager = User::find($department->bs_id);
         $department_caretaker = User::find($department->sw_id);
-        if (isset($promotion_cirlce->id)) {
-            $circle_promoter_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_cirlce->id)->where('approver_classification', RoleIndicatorEnum::CIRCLE_PROMOTER)->first();
-            $place_caretaker_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_cirlce->id)->where('approver_classification', RoleIndicatorEnum::PLACE_CARETAKER)->first();
-            $department_caretaker_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_cirlce->id)->where('approver_classification', RoleIndicatorEnum::DEPARTMENT_CARETAKER)->first();
-            $department_manager_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_cirlce->id)->where('approver_classification', RoleIndicatorEnum::DEPARTMENT_MANAGER)->first();
+        if (isset($promotion_circle->id)) {
+            $circle_promoter_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_circle->id)->where('approver_classification', RoleIndicatorEnum::CIRCLE_PROMOTER)->first();
+            $place_caretaker_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_circle->id)->where('approver_classification', RoleIndicatorEnum::PLACE_CARETAKER)->first();
+            $department_caretaker_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_circle->id)->where('approver_classification', RoleIndicatorEnum::DEPARTMENT_CARETAKER)->first();
+            $department_manager_approval = DB::table('activity_approvals')->where('promotion_circle_id', $promotion_circle->id)->where('approver_classification', RoleIndicatorEnum::DEPARTMENT_MANAGER)->first();
         }
 
         $meeting_month = DB::table('activities')->where('activity_category', Activity::MEETING)
@@ -185,7 +181,7 @@ class ActivityApprovalController extends Controller
         $other_month_10 = (clone $other_month)->whereMonth('date_execution', 10)->get();
         $other_month_11 = (clone $other_month)->whereMonth('date_execution', 11)->get();
         $other_month_12 = (clone $other_month)->whereMonth('date_execution', 12)->get();
-        
+
         // NTQ MODIFIED 20200130
         // Create ActivityApprovalsStatistics corresponding to each Circle and Year
         $actual_kaizen_month_record = DB::table('activity_approvals_statistics')->where('circle_id', session('circle.id'))->where('year', $current_year)->first();
@@ -218,10 +214,10 @@ class ActivityApprovalController extends Controller
                             + $kaizen_editinline_month_4 + $kaizen_editinline_month_5 + $kaizen_editinline_month_6
                             + $kaizen_editinline_month_7 + $kaizen_editinline_month_8 + $kaizen_editinline_month_9
                             + $kaizen_editinline_month_10 + $kaizen_editinline_month_11 + $kaizen_editinline_month_12;
-        
+
         return view('activity-approval.view',
             [
-                'promotion_cirlce' => $promotion_cirlce,
+                'promotion_circle' => $promotion_circle,
                 'review_last_year' => $review_last_year,
                 'first_year' => isset($first_year) ? $first_year->year : $current_year,
                 'last_year' => isset($last_year) ? $last_year->year : $current_year,
@@ -274,7 +270,7 @@ class ActivityApprovalController extends Controller
                 'kaizen_month_9' => $kaizen_month_9,
                 'kaizen_month_10' => $kaizen_month_10,
                 'kaizen_month_11' => $kaizen_month_11,
-                'kaizen_month_12' => $kaizen_month_12,                
+                'kaizen_month_12' => $kaizen_month_12,
                 'array_time' => $array_time,
                 'unique_members' => $unique_members,
                 'kaizen_editinline_month_1' => $kaizen_editinline_month_1,
@@ -304,48 +300,46 @@ class ActivityApprovalController extends Controller
             ]);
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $this->validate($request, ['promotion_circle_id' => 'required'], ['promotion_circle_id.required' => StaticConfig::$Required]);
-        $activity_aproval = new ActivityApproval();
-        $activity_aproval->promotion_circle_id = $request->promotion_circle_id;
-        $activity_aproval->approver_classification = $request->approver_classification;
-        $activity_aproval->user_approved = $request->user_approved;
-        $activity_aproval->date_approved = $request->date_approved;
-        $activity_aproval->user_jan = $request->user_jan;
-        $activity_aproval->date_jan = $request->date_jan;
-        $activity_aproval->user_feb = $request->user_feb;
-        $activity_aproval->date_feb = $request->date_feb;
-        $activity_aproval->user_mar = $request->user_mar;
-        $activity_aproval->date_mar = $request->date_mar;
-        $activity_aproval->user_apr = $request->user_apr;
-        $activity_aproval->date_apr = $request->date_apr;
-        $activity_aproval->user_may = $request->user_may;
-        $activity_aproval->date_may = $request->date_may;
-        $activity_aproval->user_jun = $request->user_jun;
-        $activity_aproval->date_jun = $request->date_jun;
-        $activity_aproval->user_jul = $request->user_jul;
-        $activity_aproval->date_jul = $request->date_jul;
-        $activity_aproval->user_aug = $request->user_aug;
-        $activity_aproval->date_aug = $request->date_aug;
-        $activity_aproval->user_sep = $request->user_sep;
-        $activity_aproval->date_sep = $request->date_sep;
-        $activity_aproval->user_oct = $request->user_oct;
-        $activity_aproval->date_oct = $request->date_oct;
-        $activity_aproval->user_nov = $request->user_nov;
-        $activity_aproval->date_nov = $request->date_nov;
-        $activity_aproval->user_dec = $request->user_dec;
-        $activity_aproval->date_dec = $request->date_dec;
+        $activity_approval = new ActivityApproval();
+        $activity_approval->promotion_circle_id = $request->promotion_circle_id;
+        $activity_approval->approver_classification = $request->approver_classification;
+        $activity_approval->user_approved = $request->user_approved;
+        $activity_approval->date_approved = $request->date_approved;
+        $activity_approval->user_jan = $request->user_jan;
+        $activity_approval->date_jan = $request->date_jan;
+        $activity_approval->user_feb = $request->user_feb;
+        $activity_approval->date_feb = $request->date_feb;
+        $activity_approval->user_mar = $request->user_mar;
+        $activity_approval->date_mar = $request->date_mar;
+        $activity_approval->user_apr = $request->user_apr;
+        $activity_approval->date_apr = $request->date_apr;
+        $activity_approval->user_may = $request->user_may;
+        $activity_approval->date_may = $request->date_may;
+        $activity_approval->user_jun = $request->user_jun;
+        $activity_approval->date_jun = $request->date_jun;
+        $activity_approval->user_jul = $request->user_jul;
+        $activity_approval->date_jul = $request->date_jul;
+        $activity_approval->user_aug = $request->user_aug;
+        $activity_approval->date_aug = $request->date_aug;
+        $activity_approval->user_sep = $request->user_sep;
+        $activity_approval->date_sep = $request->date_sep;
+        $activity_approval->user_oct = $request->user_oct;
+        $activity_approval->date_oct = $request->date_oct;
+        $activity_approval->user_nov = $request->user_nov;
+        $activity_approval->date_nov = $request->date_nov;
+        $activity_approval->user_dec = $request->user_dec;
+        $activity_approval->date_dec = $request->date_dec;
 
-        $activity_aproval->created_by = Auth::id();
-        $activity_aproval->updated_by = Auth::id();
-        $activity_aproval->save();
+        $activity_approval->created_by = Auth::id();
+        $activity_approval->updated_by = Auth::id();
+        $activity_approval->save();
         return redirect('activity-approval?year=' . $request->year);
     }
 

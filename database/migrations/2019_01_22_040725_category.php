@@ -22,7 +22,7 @@ class Category extends Migration
             $table->tinyInteger('statistic_classification');
             $table->tinyInteger('use_classification');
             $table->text('note')->nullable();
-            $table->text('deletable')->default(1);
+            $table->text('deletable')->nullable();
 
             $table->integer('created_by');
             $table->integer('updated_by');
