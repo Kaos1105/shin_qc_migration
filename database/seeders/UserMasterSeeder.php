@@ -1,7 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\UserMaster;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,6 +24,8 @@ class UserMasterSeeder extends Seeder
             'phone' => "0123456789",
             'login_id' => "admin",
             'password' => Hash::make('admin'),
+            'password_encrypt' => 'MTIzNDU=',
+            'statistic_classification' =>2,
             'access_authority' => 2,
             'display_order' => 1,
             // 'summary_classification' => 1,
@@ -39,6 +42,8 @@ class UserMasterSeeder extends Seeder
             'phone' => "0123456789",
             'login_id' => "user",
             'password' => Hash::make('user'),
+            'password_encrypt' => 'MTIzNDU=',
+            'statistic_classification' =>2,
             'access_authority' => 1,
             'display_order' => 1,
             // 'summary_classification' => 1,

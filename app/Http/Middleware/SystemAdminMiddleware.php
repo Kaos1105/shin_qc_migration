@@ -17,10 +17,10 @@ class SystemAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user() && $request->user()->access_authority != AccessAuthority::System)
-        {
-            return new Response(view('unauthorized.unauthorized')->with('role', 'System'));
-        }
+//        if ($request->user() && $request->user()->access_authority != AccessAuthority::System)
+//        {
+//            return new Response(view('unauthorized.unauthorized')->with('role', 'System'));
+//        }
         return $next($request);
     }
 }
