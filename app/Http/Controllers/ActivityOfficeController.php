@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use App\Circle;
+use App\Models\Activity;
+use App\Models\Circle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,7 +85,7 @@ class ActivityOfficeController extends Controller
         //get file content
         $ContentFiles = DB::table('activity_attachments')->where('activity_id', $id)->where('FileType', StaticConfig::$Type_File_Content)
                         ->join('attachments', 'attachments.id', '=', 'activity_attachments.attachment_id')
-                        ->select('attachments.id', 'attachments.FileName', 'attachments.FilePath', 'attachments.FileNameOriginal')->get();        
+                        ->select('attachments.id', 'attachments.FileName', 'attachments.FilePath', 'attachments.FileNameOriginal')->get();
         //get file content
         $RequestToBossFiles = DB::table('activity_attachments')->where('activity_id', $id)->where('FileType', StaticConfig::$Type_File_RequestToBoss)
                         ->join('attachments', 'attachments.id', '=', 'activity_attachments.attachment_id')
@@ -104,7 +104,7 @@ class ActivityOfficeController extends Controller
 
     public function updateSecretariatEntry(Request $request)
     {
-        $activity = Activity::find($request->activity_id);  
+        $activity = Activity::find($request->activity_id);
         $activity->content5 = $request->secretariat_entry;
         $activity->updated_by = Auth::id();
         $activity->save();

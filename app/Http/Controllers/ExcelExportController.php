@@ -7,7 +7,7 @@ use App\Enums\UseClassificationEnum;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
-use App\Theme;
+use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\IOFactory;

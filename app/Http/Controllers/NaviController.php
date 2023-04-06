@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Enums\StaticConfig;
 use App\Enums\UseClassificationEnum;
 use Illuminate\Http\Request;
-use App\NaviDetails;
-use App\NaviHistory;
-use App\QaQuestion;
-use App\Category;
-use App\Topic;
+use App\Models\NaviDetails;
+use App\Models\NaviHistory;
+use App\Models\QaQuestion;
+use App\Models\Category;
+use App\Models\Topic;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Thread;
+use App\Models\Thread;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -184,8 +184,7 @@ class NaviController extends Controller
         );
     }
 
-    public
-    function downloadNavi()
+    public function downloadNavi()
     {
         $id = $_GET['id'];
         $question = QaQuestion::find($id);
@@ -202,8 +201,7 @@ class NaviController extends Controller
         }
     }
 
-    public
-    function finishNavi($history_id, $classification)
+    public function finishNavi($history_id, $classification)
     {
         $history = NaviHistory::find($history_id);
         $history->done_status = 1;
@@ -212,8 +210,7 @@ class NaviController extends Controller
         return redirect(route('navi.getStoryList', $classification));
     }
 
-    public
-    function getHistory()
+    public function getHistory()
     {
         $sort = 'date_start';
         $sortType = 'asc';

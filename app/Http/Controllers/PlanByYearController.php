@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\PlanByYear;
+use App\Models\PlanByYear;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

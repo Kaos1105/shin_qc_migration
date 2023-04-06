@@ -7,8 +7,8 @@
  */
 
 namespace App\Http\Controllers;
-use App\EducationalMaterial;
-use App\User;
+use App\Models\EducationalMaterial;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

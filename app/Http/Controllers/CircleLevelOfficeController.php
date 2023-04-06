@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CircleLevel;
-use App\Member;
-use App\PromotionCircle;
-use App\User;
+use App\Models\CircleLevel;
+use App\Models\Member;
+use App\Models\PromotionCircle;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Circle;
-use App\PromotionTheme;
-use App\Theme;
+use App\Models\Circle;
+use App\Models\PromotionTheme;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

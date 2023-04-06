@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Circle;
+use App\Models\Circle;
 use App\Enums\Activity;
 use App\Enums\Common;
-use App\PromotionCircle;
+use App\Models\PromotionCircle;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

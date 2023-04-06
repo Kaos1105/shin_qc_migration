@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Enums\Common;
 use App\Enums\UseClassificationEnum;
-use App\Qa;
-use App\QaQuestion;
-use App\QaAnswer;
-use App\User;
+use App\Models\Qa;
+use App\Models\QaQuestion;
+use App\Models\QaAnswer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

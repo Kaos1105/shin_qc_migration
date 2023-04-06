@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Circle;
+use App\Models\Circle;
 use App\Enums\Activity;
-use App\Theme;
+use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use DateTime;

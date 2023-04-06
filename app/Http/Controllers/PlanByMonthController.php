@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StaticConfig;
-use App\PlanByMonth;
-use App\PlanByYear;
+use App\Models\PlanByMonth;
+use App\Models\PlanByYear;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

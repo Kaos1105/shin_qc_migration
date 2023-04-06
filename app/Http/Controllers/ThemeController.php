@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Circle;
+use App\Models\Circle;
 use App\Enums\Activity;
 use App\Enums\UseClassificationEnum;
-use App\Theme;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Helper\Helper;
 use Validator;
 use DateTime;
-use App\PromotionTheme;
-use App\ActivityOther;
+use App\Models\PromotionTheme;
+use App\Models\ActivityOther;
 
 class ThemeController extends Controller
 {
@@ -318,14 +318,14 @@ class ThemeController extends Controller
         foreach ($activity_others as $activity_others_item)
         {
             $activity_other = ActivityOther::find($activity_others_item->id);
-            $activity_other->delete();                    
+            $activity_other->delete();
         }
         //delete promotion_themes with theme_id
         $promotion_themes = DB::table('promotion_themes')->where('theme_id', $id)->get();
         foreach ($promotion_themes as $promotion_themes_item)
         {
             $promotion_theme = PromotionTheme::find($promotion_themes_item->id);
-            $promotion_theme->delete();                    
+            $promotion_theme->delete();
         }
         $theme = Theme::find($id);
         $theme->delete();

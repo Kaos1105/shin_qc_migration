@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Calendar;
+use App\Models\Calendar;
 use App\Enums\AccessAuthority;
 use App\Enums\Activity;
 use Illuminate\Http\Request;

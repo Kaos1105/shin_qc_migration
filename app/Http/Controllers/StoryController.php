@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\AccessAuthority;
 use App\Enums\UseClassificationEnum;
-use App\Story;
-use App\User;
+use App\Models\Story;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

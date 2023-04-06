@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Circle;
-use App\Department;
+use App\Models\Circle;
+use App\Models\Department;
 use App\Enums\UseClassificationEnum;
-use App\Member;
-use App\Place;
-use App\User;
+use App\Models\Member;
+use App\Models\Place;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
-use App\PromotionTheme;
-use App\PromotionCircle;
-use App\ActivityApproval;
-use App\Activity;
-use App\ActivityApprovalsStatistics;
-use App\CircleLevel;
-use App\ActivityOther;
-use App\Theme;
+use App\Models\PromotionTheme;
+use App\Models\PromotionCircle;
+use App\Models\ActivityApproval;
+use App\Models\Activity;
+use App\Models\ActivityApprovalsStatistics;
+use App\Models\CircleLevel;
+use App\Models\ActivityOther;
+use App\Models\Theme;
 
 class CircleController extends Controller
 {
@@ -250,14 +250,14 @@ class CircleController extends Controller
                 foreach ($activity_approvals as $activity_approval_item)
                 {
                     $activity_approval = ActivityApproval::find($activity_approval_item->id);
-                    $activity_approval->delete();                    
+                    $activity_approval->delete();
                 }
                 //delete circle_levels with promotion_circles_id
                 $circle_levels = DB::table('circle_levels')->where('promotion_circle_id', $promotion_circle_item->id)->get();
                 foreach ($circle_levels as $circle_level_item)
                 {
                     $circle_level = CircleLevel::find($circle_level_item->id);
-                    $circle_level->delete();                    
+                    $circle_level->delete();
                 }
                 //delete promotion circle
                 $promotion_circle = PromotionCircle::find($promotion_circle_item->id);
@@ -274,14 +274,14 @@ class CircleController extends Controller
                 foreach ($activity_others as $activity_others_item)
                 {
                     $activity_other = ActivityOther::find($activity_others_item->id);
-                    $activity_other->delete();                    
+                    $activity_other->delete();
                 }
                 //delete promotion_themes with theme_id
                 $promotion_themes = DB::table('promotion_themes')->where('theme_id', $theme_item->id)->get();
                 foreach ($promotion_themes as $promotion_themes_item)
                 {
                     $promotion_theme = PromotionTheme::find($promotion_themes_item->id);
-                    $promotion_theme->delete();                    
+                    $promotion_theme->delete();
                 }
                 //delete theme
                 $theme = Theme::find($theme_item->id);
@@ -297,7 +297,7 @@ class CircleController extends Controller
                 foreach ($activity_others as $activity_others_item)
                 {
                     $activity_other = ActivityOther::find($activity_others_item->id);
-                    $activity_other->delete();                    
+                    $activity_other->delete();
                 }
                 //delete activity
                 $activity = Activity::find($activity_item->id);
@@ -314,7 +314,7 @@ class CircleController extends Controller
                 foreach ($circle_levels as $circle_level_item)
                 {
                     $circle_level = CircleLevel::find($circle_level_item->id);
-                    $circle_level->delete();                    
+                    $circle_level->delete();
                 }
                 $member = Member::find($member_item->id);
                 $member->delete();

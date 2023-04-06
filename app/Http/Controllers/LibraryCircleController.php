@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UseClassificationEnum;
-use App\Library;
+use App\Models\Library;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\DB;
 use Validator;

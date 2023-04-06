@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Circle;
+use App\Models\Circle;
 use App\Enums\UseClassificationEnum;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;

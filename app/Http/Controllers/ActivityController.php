@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use App\ActivityOther;
-use App\Circle;
+use App\Models\Activity;
+use App\Models\ActivityOther;
+use App\Models\Circle;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\ActivityAttachment;
-use App\Attachment;
+use App\Models\ActivityAttachment;
+use App\Models\Attachment;
 use File;
 
 class ActivityController extends Controller
@@ -152,7 +152,7 @@ class ActivityController extends Controller
         $activity->content4 = $request->content4;
         $activity->content5 = $request->content5;
         $activity->created_by = Auth::id();
-        $activity->updated_by = Auth::id();        
+        $activity->updated_by = Auth::id();
         $activity->save();
         $activity_lastest = Activity::latest()->first();
 
@@ -172,7 +172,7 @@ class ActivityController extends Controller
         }
         //add  content file
         if(!empty($request->contentFileIds)){
-            $arraycontentFileIds = explode(',', $request->contentFileIds);           
+            $arraycontentFileIds = explode(',', $request->contentFileIds);
             for($i = 0; $i < count($arraycontentFileIds); $i++){
                 $existContentFile = DB::table('activity_attachments')->where('activity_id',$activity_lastest->id )->where('attachment_id',$arraycontentFileIds[$i])
                         ->where('FileType', StaticConfig::$Type_File_Content)->first();
@@ -189,7 +189,7 @@ class ActivityController extends Controller
 
         //add  request to boss file
         if(!empty($request->requestToBossFileIds)){
-            $arrayRequestFileIds = explode(',', $request->requestToBossFileIds);           
+            $arrayRequestFileIds = explode(',', $request->requestToBossFileIds);
             for($i = 0; $i < count($arrayRequestFileIds); $i++){
                 $existRequestFile = DB::table('activity_attachments')->where('activity_id',$activity_lastest->id )->where('attachment_id',$arrayRequestFileIds[$i])
                         ->where('FileType', StaticConfig::$Type_File_RequestToBoss)->first();
@@ -203,7 +203,7 @@ class ActivityController extends Controller
                 }
             }
         }
-        
+
         $currentYear = $request->filterYear;
         return redirect()->route('activity.show', [$activity_lastest->id,'year' => $currentYear]);
     }
@@ -272,7 +272,7 @@ class ActivityController extends Controller
         $RequestToBossFiles = DB::table('activity_attachments')->where('activity_id', $id)->where('FileType', StaticConfig::$Type_File_RequestToBoss)
             ->join('attachments', 'attachments.id', '=', 'activity_attachments.attachment_id')
             ->select('attachments.id', 'attachments.FileName', 'attachments.FilePath')->get();
-        
+
         return view('activity.edit',
             [
                 'activity' => $activity,
@@ -294,7 +294,7 @@ class ActivityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {        
+    {
         $this->validate($request, $this->rules, $this->messages);
         $activity = Activity::find($id);
         $activity->activity_category = $request->activity_category;
@@ -344,9 +344,9 @@ class ActivityController extends Controller
             }
         }
         //add or delete content file
-        $existContentFiles = DB::table('activity_attachments')->where('activity_id',$id )->where('FileType', StaticConfig::$Type_File_Content)->get();        
+        $existContentFiles = DB::table('activity_attachments')->where('activity_id',$id )->where('FileType', StaticConfig::$Type_File_Content)->get();
         if(!empty($request->contentFileIds)){
-            $arraycontentFileIds = explode(',', $request->contentFileIds);           
+            $arraycontentFileIds = explode(',', $request->contentFileIds);
             for($i = 0; $i < count($arraycontentFileIds); $i++){
                 $existContentFile = DB::table('activity_attachments')->where('activity_id',$id )->where('attachment_id',$arraycontentFileIds[$i])
                         ->where('FileType', StaticConfig::$Type_File_Content)->first();
@@ -389,9 +389,9 @@ class ActivityController extends Controller
             }
         }
         //add or delete request to bos file
-        $existRequestFiles = DB::table('activity_attachments')->where('activity_id',$id )->where('FileType', StaticConfig::$Type_File_RequestToBoss)->get();        
+        $existRequestFiles = DB::table('activity_attachments')->where('activity_id',$id )->where('FileType', StaticConfig::$Type_File_RequestToBoss)->get();
         if(!empty($request->requestToBossFileIds)){
-            $arrayRequestFileIds = explode(',', $request->requestToBossFileIds);           
+            $arrayRequestFileIds = explode(',', $request->requestToBossFileIds);
             for($i = 0; $i < count($arrayRequestFileIds); $i++){
                 $existRequestFile = DB::table('activity_attachments')->where('activity_id',$id )->where('attachment_id',$arrayRequestFileIds[$i])
                         ->where('FileType', StaticConfig::$Type_File_RequestToBoss)->first();
@@ -453,7 +453,7 @@ class ActivityController extends Controller
                 $activity_other = ActivityOther::find($activity_other_id);
                 $activity_other->delete();
             }
-        }        
+        }
         $activity_attachment = DB::table('activity_attachments')->where('activity_id', $id)->get();
         foreach ($activity_attachment as $contentfile)
         {
@@ -466,7 +466,7 @@ class ActivityController extends Controller
             }
             $FileAttachment->delete();
         }
-        
+
         $activity = Activity::find($id);
         $activity->delete();
         return redirect()->route('activity.index',['filter' => $request->filterYearDelete]);

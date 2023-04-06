@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UseClassificationEnum;
-use App\EducationalMaterial;
+use App\Models\EducationalMaterial;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\DB;
 use Validator;

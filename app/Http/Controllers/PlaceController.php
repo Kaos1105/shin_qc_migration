@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\Place;
-use App\User;
+use App\Models\Department;
+use App\Models\Place;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Enums\StaticConfig;
 use Illuminate\Support\Facades\Auth;

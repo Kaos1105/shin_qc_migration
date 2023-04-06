@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\ActivityApproval;
-use App\Circle;
-use App\Department;
+use App\Models\ActivityApproval;
+use App\Models\Circle;
+use App\Models\Department;
 use App\Enums\AccessAuthority;
 use App\Enums\Activity;
 use App\Enums\StaticConfig;
 use App\Enums\UseClassificationEnum;
-use App\Place;
-use App\PromotionCircle;
-use App\User;
+use App\Models\Place;
+use App\Models\PromotionCircle;
+use App\Models\User;
 use App\Enums\RoleIndicatorEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
