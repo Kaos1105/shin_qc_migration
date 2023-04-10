@@ -13,11 +13,16 @@
 
 use App\Http\Controllers\CircleController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EducationalMaterialsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\KeepSortController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\PlanByMonthController;
 use App\Http\Controllers\PlanByYearController;
 use App\Http\Controllers\ToppageController;
 use App\Http\Controllers\UserController;
@@ -78,44 +83,44 @@ Route::group(['middleware' => ['App\Http\Middleware\AdminMiddleware', 'auth']], 
 
     Route::resource('/planbyyear', PlanByYearController::class);
     Route::get('/planbyyear/history', [PlanByYearController::class, 'show']);
-    Route::get('/planbyyear/{year}/create', 'PlanByYearController@create');
-    Route::get('/planbyyear/{id}/edit', 'PlanByYearController@edit');
-    Route::put('/planbyyear/{id}', 'PlanByYearController@update');
+    Route::get('/planbyyear/{year}/create', [PlanByYearController::class, 'create']);
+    Route::get('/planbyyear/{id}/edit', [PlanByYearController::class, 'edit']);
+    Route::put('/planbyyear/{id}', [PlanByYearController::class,'update']);
 
-    Route::resource('/planbymonth', 'PlanByMonthController');
-    Route::get('/planbymonth/{id}/create', 'PlanByMonthController@create');
-    Route::get('/planbymonth/{id}/edit', 'PlanByMonthController@edit');
-    Route::put('/planbymonth/{id}', 'PlanByMonthController@update');
-    Route::delete('/planbymonth/{id}', 'PlanByMonthController@destroy');
+    Route::resource('/planbymonth', PlanByMonthController::class);
+    Route::get('/planbymonth/{id}/create', [PlanByMonthController::class, 'create']);
+    Route::get('/planbymonth/{id}/edit', [PlanByMonthController::class, 'edit']);
+    Route::put('/planbymonth/{id}', [PlanByMonthController::class, 'update']);
+    Route::delete('/planbymonth/{id}', [PlanByMonthController::class, 'destroy']);
 
-    Route::resource('/notification', 'NotificationController')->except(['update']);
-    Route::get('/notification/index', 'NotificationController@index');
-    Route::get('/notification/create', 'NotificationController@create')->name('notification.create');
-    Route::get('/notification/view', 'NotificationController@show');
-    Route::get('/notification/copy/{id}', 'NotificationController@copy')->name('notification.copy');
-    Route::get('/notification/{id}/edit', 'NotificationController@edit');
-    Route::put('/notification/{id}', 'NotificationController@update')->name('notification.update');
-    Route::get('notification/delete/{id}', ['as' => 'notification.delete', 'uses' => 'NotificationController@destroy']);
+    Route::resource('/notification', NotificationController::class)->except(['update']);
+    Route::get('/notification/index', [NotificationController::class, 'index']);
+    Route::get('/notification/create', [NotificationController::class, 'create'])->name('notification.create');
+    Route::get('/notification/view', [NotificationController::class, 'show']);
+    Route::get('/notification/copy/{id}', [NotificationController::class, 'copy'])->name('notification.copy');
+    Route::get('/notification/{id}/edit', [NotificationController::class, 'edit']);
+    Route::put('/notification/{id}', [NotificationController::class, 'update'])->name('notification.update');
+    Route::get('notification/delete/{id}', [NotificationController::class, 'destroy'])->name('notification.delete');
 
-    Route::resource('/library', 'LibraryController')->except(['show', 'update']);
-    Route::get('/library/create', 'LibraryController@create')->name('library.create');
-    Route::get('/library/{id}', 'LibraryController@show')->name('library.show');
-    Route::get('/library/{id}/edit', 'LibraryController@edit');
-    Route::put('/library/{id}', 'LibraryController@update')->name('library.update');
-    Route::get('/download/{filePath}', ['as' => 'library.download', 'uses' => 'LibraryController@download']);
-    Route::get('library/delete/{id}', ['as' => 'library.delete', 'uses' => 'LibraryController@destroy']);
+    Route::resource('/library', LibraryController::class)->except(['show', 'update']);
+    Route::get('/library/create', [LibraryController::class,'create'])->name('library.create');
+    Route::get('/library/{id}', [LibraryController::class, 'show'])->name('library.show');
+    Route::get('/library/{id}/edit', [LibraryController::class, 'edit']);
+    Route::put('/library/{id}', [LibraryController::class, 'update'])->name('library.update');
+    Route::get('/download/{filePath}', [LibraryController::class, 'download'])->name('library.download');
+    Route::get('library/delete/{id}', [LibraryController::class, 'destroy'])->name('library.delete');
 
-    Route::resource('/educational-materials', 'EducationalMaterialsController')->except(['show', 'update']);
-    Route::get('/educational-materials/create', 'EducationalMaterialsController@create')->name('educational-materials.create');
-    Route::get('/educational-materials/{id}', 'EducationalMaterialsController@show')->name('educational-materials.show');
-    Route::get('/educational-materials/{id}/edit', 'EducationalMaterialsController@edit');
-    Route::put('/educational-materials/{id}', 'EducationalMaterialsController@update')->name('educational-materials.update');
-    Route::get('/educational-materials-download/{filePath}', ['as' => 'educational-materials.download', 'uses' => 'EducationalMaterialsController@download']);
-    Route::get('educational-materials/delete/{id}', ['as' => 'educational-materials.delete', 'uses' => 'EducationalMaterialsController@destroy']);
+    Route::resource('/educational-materials', EducationalMaterialsController::class)->except(['show', 'update']);
+    Route::get('/educational-materials/create', [EducationalMaterialsController::class, 'create'])->name('educational-materials.create');
+    Route::get('/educational-materials/{id}', [EducationalMaterialsController::class, 'show'])->name('educational-materials.show');
+    Route::get('/educational-materials/{id}/edit', [EducationalMaterialsController::class, 'edit']);
+    Route::put('/educational-materials/{id}', [EducationalMaterialsController::class, 'update'])->name('educational-materials.update');
+    Route::get('/educational-materials-download/{filePath}', [EducationalMaterialsController::class, 'download'])->name('educational-materials.download');
+    Route::get('educational-materials/delete/{id}', [EducationalMaterialsController::class, 'destroy'])->name('educational-materials.delete');
 
-    Route::resource('/homepage', 'HomepageController')->except(['show', 'update']);
-    Route::get('/homepage/create', 'HomepageController@create')->name('homepage.create');
-    Route::get('/homepage/{id}', 'HomepageController@show')->name('homepage.show');
+    Route::resource('/homepage', HomepageController::class)->except(['show', 'update']);
+    Route::get('/homepage/create', [HomepageController::class, 'create'])->name('homepage.create');
+    Route::get('/homepage/{id}', [HomepageController::class, 'show'])->name('homepage.show');
     Route::get('/homepage/{id}/edit', 'HomepageController@edit');
     Route::put('/homepage/{id}', 'HomepageController@update')->name('homepage.update');
     Route::get('homepage/delete/{id}', ['as' => 'homepage.delete', 'uses' => 'HomepageController@destroy']);
