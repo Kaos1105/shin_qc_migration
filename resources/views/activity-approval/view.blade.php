@@ -107,7 +107,7 @@
             <?php $sttMembers = 1;?>
             @foreach($list_member as $item)
                 <?php
-                $user = App\User::find($item->user_id);
+                $user = App\Models\User::find($item->user_id);
                 ?>
                 <tr>
                     <td style="text-align: center">
@@ -596,7 +596,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                    
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_1 . '/' . $kaizen_editinline_month_total;
@@ -613,7 +613,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                       
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_2 . '/' . $kaizen_editinline_month_total;
@@ -630,7 +630,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                           
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_3 . '/' . $kaizen_editinline_month_total;
@@ -647,7 +647,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                        
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_4 . '/' . $kaizen_editinline_month_total;
@@ -664,7 +664,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                                            
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_5 . '/' . $kaizen_editinline_month_total;
@@ -681,7 +681,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                                                      
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_6 . '/' . $kaizen_editinline_month_total;
@@ -698,7 +698,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                                       
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_7 . '/' . $kaizen_editinline_month_total;
@@ -715,7 +715,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                                                      
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_8 . '/' . $kaizen_editinline_month_total;
@@ -732,7 +732,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                                                 
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_9 . '/' . $kaizen_editinline_month_total;
@@ -749,7 +749,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                 
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_10 . '/' . $kaizen_editinline_month_total;
@@ -766,7 +766,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                      
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_11 . '/' . $kaizen_editinline_month_total;
@@ -783,7 +783,7 @@
                             echo '/' . $kaizen_editinline_month_total;
                             ?>
                         </span>
-                    </div>                                                  
+                    </div>
                     <span style="cursor: pointer" class="txtKaizen" title="ダブルクリックして編集">
                         <?php
                         echo $kaizen_editinline_month_12 . '/' . $kaizen_editinline_month_total;
@@ -906,7 +906,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_approved))
                         <?php
-						$user_approved = \App\User::find($circle_promoter_approval->user_approved);
+						$user_approved = \App\Models\User::find($circle_promoter_approval->user_approved);
 						$name_approved_explode = explode("　", $user_approved->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_approved}}">&times;</div>
@@ -924,7 +924,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_jan))
                         <?php
-						$user_jan = \App\User::find($circle_promoter_approval->user_jan);
+						$user_jan = \App\Models\User::find($circle_promoter_approval->user_jan);
 						$name_jan_explode = explode("　", $user_jan->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_jan}}">&times;</div>
@@ -942,7 +942,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_feb))
                         <?php
-						$user_feb = \App\User::find($circle_promoter_approval->user_feb);
+						$user_feb = \App\Models\User::find($circle_promoter_approval->user_feb);
 						$name_feb_explode = explode("　", $user_feb->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_feb}}">&times;</div>
@@ -960,7 +960,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_mar))
                         <?php
-						$user_mar = \App\User::find($circle_promoter_approval->user_mar);
+						$user_mar = \App\Models\User::find($circle_promoter_approval->user_mar);
 						$user_mar_explode = explode("　", $user_mar->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_mar}}">&times;</div>
@@ -978,7 +978,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_apr))
                         <?php
-						$user_apr = \App\User::find($circle_promoter_approval->user_apr);
+						$user_apr = \App\Models\User::find($circle_promoter_approval->user_apr);
 						$user_apr_explode = explode("　", $user_apr->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_apr}}">&times;</div>
@@ -996,7 +996,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_may))
                         <?php
-						$user_may = \App\User::find($circle_promoter_approval->user_may);
+						$user_may = \App\Models\User::find($circle_promoter_approval->user_may);
 						$user_may_explode = explode("　", $user_may->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_may}}">&times;</div>
@@ -1014,7 +1014,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_jun))
                         <?php
-						$user_jun = \App\User::find($circle_promoter_approval->user_jun);
+						$user_jun = \App\Models\User::find($circle_promoter_approval->user_jun);
 						$user_jun_explode = explode("　", $user_jun->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_jun}}">&times;</div>
@@ -1032,7 +1032,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_jul))
                         <?php
-						$user_jul = \App\User::find($circle_promoter_approval->user_jul);
+						$user_jul = \App\Models\User::find($circle_promoter_approval->user_jul);
 						$user_jul_explode = explode("　", $user_jul->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_jul}}">&times;</div>
@@ -1050,7 +1050,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_aug))
                         <?php
-						$user_aug = \App\User::find($circle_promoter_approval->user_aug);
+						$user_aug = \App\Models\User::find($circle_promoter_approval->user_aug);
 						$user_aug_explode = explode("　", $user_aug->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_aug}}">&times;</div>
@@ -1068,7 +1068,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_sep))
                         <?php
-						$user_sep = \App\User::find($circle_promoter_approval->user_sep);
+						$user_sep = \App\Models\User::find($circle_promoter_approval->user_sep);
 						$user_sep_explode = explode("　", $user_sep->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_sep}}">&times;</div>
@@ -1086,7 +1086,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_oct))
                         <?php
-						$user_oct = \App\User::find($circle_promoter_approval->user_oct);
+						$user_oct = \App\Models\User::find($circle_promoter_approval->user_oct);
 						$user_oct_explode = explode("　", $user_oct->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_oct}}">&times;</div>
@@ -1104,7 +1104,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_nov))
                         <?php
-						$user_nov = \App\User::find($circle_promoter_approval->user_nov);
+						$user_nov = \App\Models\User::find($circle_promoter_approval->user_nov);
 						$user_nov_explode = explode("　", $user_nov->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_nov}}">&times;</div>
@@ -1122,7 +1122,7 @@
                 <td class="stamp-box">
                     @if(isset($circle_promoter_approval->user_dec))
                         <?php
-						$user_dec = \App\User::find($circle_promoter_approval->user_dec);
+						$user_dec = \App\Models\User::find($circle_promoter_approval->user_dec);
 						$user_dec_explode = explode("　", $user_dec->name);
 						?>
                         <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_dec}}">&times;</div>
@@ -1141,7 +1141,7 @@
                     {{ Form::model($circle_promoter_approval, array('route' => array('activityapproval.update', $circle_promoter_approval->id), 'method' => 'PUT', 'id' => 'circle-promoter-approval-form')) }}
                 @else
                     <form id="circle-promoter-approval-form" method="POST"
-                          action="{{ action('ActivityApprovalController@store') }}">
+                          action="{{ route('activityapproval.store') }}">
                         @endif
                         @csrf
                         <input type="hidden" name="year" value="{{ isset($_GET['year'])? $_GET['year'] : date('Y') }}"/>
@@ -1235,7 +1235,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_approved))
                         <?php
-						$user_approved = \App\User::find($place_caretaker_approval->user_approved);
+						$user_approved = \App\Models\User::find($place_caretaker_approval->user_approved);
 						$name_approved_explode = explode("　", $user_approved->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_approved}}">&times;</div>
@@ -1253,7 +1253,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_jan))
                         <?php
-						$user_jan = \App\User::find($place_caretaker_approval->user_jan);
+						$user_jan = \App\Models\User::find($place_caretaker_approval->user_jan);
 						$name_jan_explode = explode("　", $user_jan->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_jan}}">&times;</div>
@@ -1270,7 +1270,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_feb))
                         <?php
-						$user_feb = \App\User::find($place_caretaker_approval->user_feb);
+						$user_feb = \App\Models\User::find($place_caretaker_approval->user_feb);
 						$name_feb_explode = explode("　", $user_feb->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_feb}}">&times;</div>
@@ -1287,7 +1287,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_mar))
                         <?php
-						$user_mar = \App\User::find($place_caretaker_approval->user_mar);
+						$user_mar = \App\Models\User::find($place_caretaker_approval->user_mar);
 						$user_mar_explode = explode("　", $user_mar->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_mar}}">&times;</div>
@@ -1304,7 +1304,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_apr))
                         <?php
-						$user_apr = \App\User::find($place_caretaker_approval->user_apr);
+						$user_apr = \App\Models\User::find($place_caretaker_approval->user_apr);
 						$user_apr_explode = explode("　", $user_apr->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_apr}}">&times;</div>
@@ -1321,7 +1321,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_may))
                         <?php
-						$user_may = \App\User::find($place_caretaker_approval->user_may);
+						$user_may = \App\Models\User::find($place_caretaker_approval->user_may);
 						$user_may_explode = explode("　", $user_may->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_may}}">&times;</div>
@@ -1338,7 +1338,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_jun))
                         <?php
-						$user_jun = \App\User::find($place_caretaker_approval->user_jun);
+						$user_jun = \App\Models\User::find($place_caretaker_approval->user_jun);
 						$user_jun_explode = explode("　", $user_jun->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_jun}}">&times;</div>
@@ -1355,7 +1355,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_jul))
                         <?php
-						$user_jul = \App\User::find($place_caretaker_approval->user_jul);
+						$user_jul = \App\Models\User::find($place_caretaker_approval->user_jul);
 						$user_jul_explode = explode("　", $user_jul->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_jul}}">&times;</div>
@@ -1372,7 +1372,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_aug))
                         <?php
-						$user_aug = \App\User::find($place_caretaker_approval->user_aug);
+						$user_aug = \App\Models\User::find($place_caretaker_approval->user_aug);
 						$user_aug_explode = explode("　", $user_aug->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_aug}}">&times;</div>
@@ -1389,7 +1389,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_sep))
                         <?php
-						$user_sep = \App\User::find($place_caretaker_approval->user_sep);
+						$user_sep = \App\Models\User::find($place_caretaker_approval->user_sep);
 						$user_sep_explode = explode("　", $user_sep->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_sep}}">&times;</div>
@@ -1406,7 +1406,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_oct))
                         <?php
-						$user_oct = \App\User::find($place_caretaker_approval->user_oct);
+						$user_oct = \App\Models\User::find($place_caretaker_approval->user_oct);
 						$user_oct_explode = explode("　", $user_oct->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_oct}}">&times;</div>
@@ -1423,7 +1423,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_nov))
                         <?php
-						$user_nov = \App\User::find($place_caretaker_approval->user_nov);
+						$user_nov = \App\Models\User::find($place_caretaker_approval->user_nov);
 						$user_nov_explode = explode("　", $user_nov->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_nov}}">&times;</div>
@@ -1440,7 +1440,7 @@
                 <td class="stamp-box">
                     @if(isset($place_caretaker_approval->user_dec))
                         <?php
-						$user_dec = \App\User::find($place_caretaker_approval->user_dec);
+						$user_dec = \App\Models\User::find($place_caretaker_approval->user_dec);
 						$user_dec_explode = explode("　", $user_dec->name);
 						?>
                         <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_dec}}">&times;</div>
@@ -1458,7 +1458,7 @@
                     {{ Form::model($place_caretaker_approval, array('route' => array('activityapproval.update', $place_caretaker_approval->id), 'method' => 'PUT', 'id' => 'place-caretaker-approval-form')) }}
                 @else
                     <form id="place-caretaker-approval-form" method="POST"
-                          action="{{ action('ActivityApprovalController@store') }}">
+                          action="{{ route('activityapproval.store') }}">
                         @endif
                         @csrf
                         <input type="hidden" name="year" value="{{ isset($_GET['year'])? $_GET['year'] : date('Y') }}"/>
@@ -1552,7 +1552,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_approved))
                         <?php
-						$user_approved = \App\User::find($department_caretaker_approval->user_approved);
+						$user_approved = \App\Models\User::find($department_caretaker_approval->user_approved);
 						$name_approved_explode = explode("　", $user_approved->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_approved}}">&times;</div>
@@ -1570,7 +1570,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_jan))
                         <?php
-						$user_jan = \App\User::find($department_caretaker_approval->user_jan);
+						$user_jan = \App\Models\User::find($department_caretaker_approval->user_jan);
 						$name_jan_explode = explode("　", $user_jan->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_jan}}">&times;</div>
@@ -1588,7 +1588,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_feb))
                         <?php
-						$user_feb = \App\User::find($department_caretaker_approval->user_feb);
+						$user_feb = \App\Models\User::find($department_caretaker_approval->user_feb);
 						$name_feb_explode = explode("　", $user_feb->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_feb}}">&times;</div>
@@ -1606,7 +1606,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_mar))
                         <?php
-						$user_mar = \App\User::find($department_caretaker_approval->user_mar);
+						$user_mar = \App\Models\User::find($department_caretaker_approval->user_mar);
 						$user_mar_explode = explode("　", $user_mar->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_mar}}">&times;</div>
@@ -1624,7 +1624,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_apr))
                         <?php
-						$user_apr = \App\User::find($department_caretaker_approval->user_apr);
+						$user_apr = \App\Models\User::find($department_caretaker_approval->user_apr);
 						$user_apr_explode = explode("　", $user_apr->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_apr}}">&times;</div>
@@ -1642,7 +1642,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_may))
                         <?php
-						$user_may = \App\User::find($department_caretaker_approval->user_may);
+						$user_may = \App\Models\User::find($department_caretaker_approval->user_may);
 						$user_may_explode = explode("　", $user_may->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_may}}">&times;</div>
@@ -1660,7 +1660,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_jun))
                         <?php
-						$user_jun = \App\User::find($department_caretaker_approval->user_jun);
+						$user_jun = \App\Models\User::find($department_caretaker_approval->user_jun);
 						$user_jun_explode = explode("　", $user_jun->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_jun}}">&times;</div>
@@ -1678,7 +1678,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_jul))
                         <?php
-						$user_jul = \App\User::find($department_caretaker_approval->user_jul);
+						$user_jul = \App\Models\User::find($department_caretaker_approval->user_jul);
 						$user_jul_explode = explode("　", $user_jul->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_jul}}">&times;</div>
@@ -1696,7 +1696,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_aug))
                         <?php
-						$user_aug = \App\User::find($department_caretaker_approval->user_aug);
+						$user_aug = \App\Models\User::find($department_caretaker_approval->user_aug);
 						$user_aug_explode = explode("　", $user_aug->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_aug}}">&times;</div>
@@ -1714,7 +1714,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_sep))
                         <?php
-						$user_sep = \App\User::find($department_caretaker_approval->user_sep);
+						$user_sep = \App\Models\User::find($department_caretaker_approval->user_sep);
 						$user_sep_explode = explode("　", $user_sep->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_sep}}">&times;</div>
@@ -1732,7 +1732,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_oct))
                         <?php
-						$user_oct = \App\User::find($department_caretaker_approval->user_oct);
+						$user_oct = \App\Models\User::find($department_caretaker_approval->user_oct);
 						$user_oct_explode = explode("　", $user_oct->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_oct}}">&times;</div>
@@ -1750,7 +1750,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_nov))
                         <?php
-						$user_nov = \App\User::find($department_caretaker_approval->user_nov);
+						$user_nov = \App\Models\User::find($department_caretaker_approval->user_nov);
 						$user_nov_explode = explode("　", $user_nov->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_nov}}">&times;</div>
@@ -1768,7 +1768,7 @@
                 <td class="stamp-box">
                     @if(isset($department_caretaker_approval->user_dec))
                         <?php
-						$user_dec = \App\User::find($department_caretaker_approval->user_dec);
+						$user_dec = \App\Models\User::find($department_caretaker_approval->user_dec);
 						$user_dec_explode = explode("　", $user_dec->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_dec}}">&times;</div>
@@ -1787,7 +1787,7 @@
                     {{ Form::model($department_caretaker_approval, array('route' => array('activityapproval.update', $department_caretaker_approval->id), 'method' => 'PUT', 'id' => 'department-caretaker-approval-form')) }}
                 @else
                     <form id="department-caretaker-approval-form" method="POST"
-                          action="{{ action('ActivityApprovalController@store') }}">
+                          action="{{ route('activityapproval.store') }}">
                         @endif
                         @csrf
                         <input type="hidden" name="year" value="{{ isset($_GET['year'])? $_GET['year'] : date('Y') }}"/>
@@ -1881,7 +1881,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_approved))
                         <?php
-						$user_approved = \App\User::find($department_manager_approval->user_approved);
+						$user_approved = \App\Models\User::find($department_manager_approval->user_approved);
 						$name_approved_explode = explode("　", $user_approved->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_approved}}">&times;</div>
@@ -1899,7 +1899,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_jan))
                         <?php
-						$user_jan = \App\User::find($department_manager_approval->user_jan);
+						$user_jan = \App\Models\User::find($department_manager_approval->user_jan);
 						$name_jan_explode = explode("　", $user_jan->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_jan}}">&times;</div>
@@ -1917,7 +1917,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_feb))
                         <?php
-						$user_feb = \App\User::find($department_manager_approval->user_feb);
+						$user_feb = \App\Models\User::find($department_manager_approval->user_feb);
 						$name_feb_explode = explode("　", $user_feb->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_feb}}">&times;</div>
@@ -1935,7 +1935,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_mar))
                         <?php
-						$user_mar = \App\User::find($department_manager_approval->user_mar);
+						$user_mar = \App\Models\User::find($department_manager_approval->user_mar);
 						$user_mar_explode = explode("　", $user_mar->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_mar}}">&times;</div>
@@ -1953,7 +1953,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_apr))
                         <?php
-						$user_apr = \App\User::find($department_manager_approval->user_apr);
+						$user_apr = \App\Models\User::find($department_manager_approval->user_apr);
 						$user_apr_explode = explode("　", $user_apr->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_apr}}">&times;</div>
@@ -1971,7 +1971,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_may))
                         <?php
-						$user_may = \App\User::find($department_manager_approval->user_may);
+						$user_may = \App\Models\User::find($department_manager_approval->user_may);
 						$user_may_explode = explode("　", $user_may->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_may}}">&times;</div>
@@ -1989,7 +1989,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_jun))
                         <?php
-						$user_jun = \App\User::find($department_manager_approval->user_jun);
+						$user_jun = \App\Models\User::find($department_manager_approval->user_jun);
 						$user_jun_explode = explode("　", $user_jun->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_jun}}">&times;</div>
@@ -2007,7 +2007,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_jul))
                         <?php
-						$user_jul = \App\User::find($department_manager_approval->user_jul);
+						$user_jul = \App\Models\User::find($department_manager_approval->user_jul);
 						$user_jul_explode = explode("　", $user_jul->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_jul}}">&times;</div>
@@ -2025,7 +2025,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_aug))
                         <?php
-						$user_aug = \App\User::find($department_manager_approval->user_aug);
+						$user_aug = \App\Models\User::find($department_manager_approval->user_aug);
 						$user_aug_explode = explode("　", $user_aug->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_aug}}">&times;</div>
@@ -2043,7 +2043,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_sep))
                         <?php
-						$user_sep = \App\User::find($department_manager_approval->user_sep);
+						$user_sep = \App\Models\User::find($department_manager_approval->user_sep);
 						$user_sep_explode = explode("　", $user_sep->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_sep}}">&times;</div>
@@ -2061,7 +2061,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_oct))
                         <?php
-						$user_oct = \App\User::find($department_manager_approval->user_oct);
+						$user_oct = \App\Models\User::find($department_manager_approval->user_oct);
 						$user_oct_explode = explode("　", $user_oct->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_oct}}">&times;</div>
@@ -2079,7 +2079,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_nov))
                         <?php
-						$user_nov = \App\User::find($department_manager_approval->user_nov);
+						$user_nov = \App\Models\User::find($department_manager_approval->user_nov);
 						$user_nov_explode = explode("　", $user_nov->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_nov}}">&times;</div>
@@ -2097,7 +2097,7 @@
                 <td class="stamp-box">
                     @if(isset($department_manager_approval->user_dec))
                         <?php
-						$user_dec = \App\User::find($department_manager_approval->user_dec);
+						$user_dec = \App\Models\User::find($department_manager_approval->user_dec);
 						$user_dec_explode = explode("　", $user_dec->name);
 						?>
                         <div class="remove-stamp" data-user="{{$department_manager_approval->user_dec}}">&times;</div>
@@ -2116,7 +2116,7 @@
                     {{ Form::model($department_manager_approval, array('route' => array('activityapproval.update', $department_manager_approval->id), 'method' => 'PUT', 'id' => 'department-manager-approval-form')) }}
                 @else
                     <form id="department-manager-approval-form" method="POST"
-                          action="{{ action('ActivityApprovalController@store') }}">
+                          action="{{ route('activityapproval.store') }}">
                         @endif
                         @csrf
                         <input type="hidden" name="year" value="{{ isset($_GET['year'])? $_GET['year'] : date('Y') }}"/>
@@ -2215,7 +2215,7 @@
         </div>
 
         <form class="d-none" id="remove-stamp-info" method="POST"
-              action="{{ action('ActivityApprovalController@removeStamp') }}">
+              action="{{ route('activityapproval.removeStamp') }}">
             @csrf
             <input type="hidden" id="line-id" name="line_id" value=""/>
             <input type="hidden" id="month-stamp" name="month_stamp" value=""/>

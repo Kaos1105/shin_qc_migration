@@ -45,16 +45,16 @@
                     <td class="td-first">重点実施事項</td>
                     <td>
                         <select name="execution_order_no" class="qc-form-select">
-                            @if(isset($planbyyear->prioritize_1)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY1 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY1 ? "selected":"") }}>{{ $planbyyear->prioritize_1 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_2)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY2 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY2 ? "selected":"") }}>{{ $planbyyear->prioritize_2 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_3)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY3 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY3 ? "selected":"") }}>{{ $planbyyear->prioritize_3 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_4)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY4 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY4 ? "selected":"") }}>{{ $planbyyear->prioritize_4 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_5)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY5 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY5 ? "selected":"") }}>{{ $planbyyear->prioritize_5 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_6)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY6 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY6 ? "selected":"") }}>{{ $planbyyear->prioritize_6 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_7)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY7 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY7 ? "selected":"") }}>{{ $planbyyear->prioritize_7 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_8)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY8 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY8 ? "selected":"") }}>{{ $planbyyear->prioritize_8 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_9)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY9 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY9 ? "selected":"") }}>{{ $planbyyear->prioritize_9 }}</option> @endif
-                            @if(isset($planbyyear->prioritize_10)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY10 }}" {{ (Input::old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY10 ? "selected":"") }}>{{ $planbyyear->prioritize_10 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_1)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY1 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY1 ? "selected":"") }}>{{ $planbyyear->prioritize_1 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_2)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY2 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY2 ? "selected":"") }}>{{ $planbyyear->prioritize_2 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_3)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY3 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY3 ? "selected":"") }}>{{ $planbyyear->prioritize_3 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_4)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY4 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY4 ? "selected":"") }}>{{ $planbyyear->prioritize_4 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_5)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY5 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY5 ? "selected":"") }}>{{ $planbyyear->prioritize_5 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_6)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY6 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY6 ? "selected":"") }}>{{ $planbyyear->prioritize_6 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_7)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY7 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY7 ? "selected":"") }}>{{ $planbyyear->prioritize_7 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_8)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY8 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY8 ? "selected":"") }}>{{ $planbyyear->prioritize_8 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_9)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY9 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY9 ? "selected":"") }}>{{ $planbyyear->prioritize_9 }}</option> @endif
+                            @if(isset($planbyyear->prioritize_10)) <option value="{{ App\Enums\PrioritizeEnum::PRIORITY10 }}" {{ (old("execution_order_no") == App\Enums\PrioritizeEnum::PRIORITY10 ? "selected":"") }}>{{ $planbyyear->prioritize_10 }}</option> @endif
                         </select>
                         <span class="qc-form-required">必須</span>
                         @if ($errors->has('execution_order_no'))
@@ -88,7 +88,7 @@
                         <!--<textarea id="in_charge" class="qc-form-area qc-form-input-50" name="in_charge" >{{ old('in_charge') }}</textarea>-->
                         <input type="hidden" value="{{ old('in_charge')}}"
                                name="in_charge" id="in_charge">
-                        <div id="in_charge-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div> 
+                        <div id="in_charge-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -97,7 +97,7 @@
                         <!--<textarea id="note" class="qc-form-area qc-form-input-50" name="note" >{{ old('note') }}</textarea>-->
                         <input type="hidden" value="{{ old('note')}}"
                                name="note" id="note">
-                        <div id="note-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div> 
+                        <div id="note-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>
                     </td>
                 </tr>
             </table>
@@ -123,51 +123,51 @@
                 <tr>
                     <td class="td-first">{{ __('期間') }}</td>
                     <td>
-                        <input type="radio" value="1" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 1 ? "checked":"") }}/> |
-                        <input type="radio" value="1" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 1 ? "checked":"") }}/>
+                        <input type="radio" value="1" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 1 ? "checked":"") }}/> |
+                        <input type="radio" value="1" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 1 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="2" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 2 ? "checked":"") }}/> |
-                        <input type="radio" value="2" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 2 ? "checked":"") }}/>
+                        <input type="radio" value="2" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 2 ? "checked":"") }}/> |
+                        <input type="radio" value="2" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 2 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="3" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 3 ? "checked":"") }}/> |
-                        <input type="radio" value="3" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 3 ? "checked":"") }}/>
+                        <input type="radio" value="3" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 3 ? "checked":"") }}/> |
+                        <input type="radio" value="3" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 3 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="4" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 4 ? "checked":"") }}/> |
-                        <input type="radio" value="4" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 4 ? "checked":"") }}/>
+                        <input type="radio" value="4" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 4 ? "checked":"") }}/> |
+                        <input type="radio" value="4" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 4 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="5" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 5 ? "checked":"") }}/> |
-                        <input type="radio" value="5" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 5 ? "checked":"") }}/>
+                        <input type="radio" value="5" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 5 ? "checked":"") }}/> |
+                        <input type="radio" value="5" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 5 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="6" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 6 ? "checked":"") }}/> |
-                        <input type="radio" value="6" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 6 ? "checked":"") }}/>
+                        <input type="radio" value="6" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 6 ? "checked":"") }}/> |
+                        <input type="radio" value="6" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 6 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="7" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 7 ? "checked":"") }}/> |
-                        <input type="radio" value="7" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 7 ? "checked":"") }}/>
+                        <input type="radio" value="7" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 7 ? "checked":"") }}/> |
+                        <input type="radio" value="7" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 7 ? "checked":"") }}/>
                     </td><td>
-                        <input type="radio" value="8" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 8 ? "checked":"") }}/> |
-                        <input type="radio" value="8" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 8 ? "checked":"") }}/>
+                        <input type="radio" value="8" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 8 ? "checked":"") }}/> |
+                        <input type="radio" value="8" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 8 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="9" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 9 ? "checked":"") }}/> |
-                        <input type="radio" value="9" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 9 ? "checked":"") }}/>
+                        <input type="radio" value="9" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 9 ? "checked":"") }}/> |
+                        <input type="radio" value="9" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 9 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="10" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 10 ? "checked":"") }}/> |
-                        <input type="radio" value="10" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 10 ? "checked":"") }}/>
+                        <input type="radio" value="10" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 10 ? "checked":"") }}/> |
+                        <input type="radio" value="10" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 10 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="11" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 11 ? "checked":"") }}/> |
-                        <input type="radio" value="11" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 11 ? "checked":"") }}/>
+                        <input type="radio" value="11" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 11 ? "checked":"") }}/> |
+                        <input type="radio" value="11" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 11 ? "checked":"") }}/>
                     </td>
                     <td>
-                        <input type="radio" value="12" name="month_start" onchange="checkStart(this)" {{ (Input::old("month_start") == 12 ? "checked":"") }}/> |
-                        <input type="radio" value="12" name="month_end" onchange="checkEnd(this)" {{ (Input::old("month_end") == 12 ? "checked":"") }}/>
+                        <input type="radio" value="12" name="month_start" onchange="checkStart(this)" {{ (old("month_start") == 12 ? "checked":"") }}/> |
+                        <input type="radio" value="12" name="month_end" onchange="checkEnd(this)" {{ (old("month_end") == 12 ? "checked":"") }}/>
                     </td>
                 </tr>
                 <tr>
@@ -189,7 +189,7 @@
 
         </form>
     </div>
-<script>        
+<script>
         var Font = Quill.import('formats/font');
         Font.whitelist = ['mirza', 'roboto', 'arial', 'MS UI Gothic', 'Meiryo UI', '游ゴシック', 'sans-serif'];
         Quill.register(Font, true);
@@ -212,9 +212,9 @@
             },
             placeholder: "下記のボックスの中に、職場の問題を書き出してください...",
             theme: 'snow'
-        });  
-        in_charge_Editor.root.innerHTML = '<?php echo old('in_charge') ?>';        
-        
+        });
+        in_charge_Editor.root.innerHTML = '<?php echo old('in_charge') ?>';
+
         var note_Editor = new Quill('#note-editor', {
             bounds: '#note-editor',
             modules: {
@@ -222,8 +222,8 @@
             },
             placeholder: "下記のボックスの中に、職場の問題を書き出してください...",
             theme: 'snow'
-        });        
-        note_Editor.root.innerHTML = '<?php echo old('note') ?>';    
+        });
+        note_Editor.root.innerHTML = '<?php echo old('note') ?>';
 </script>
     <script>
         var startValue = 0;
@@ -234,9 +234,9 @@
             if(!startValue || !endValue){
                 alert('開始月と終了月を設定してください');
             }else{
-                var style = "\"margin-top: 0; margin-bottom: 0;\"";          
-                $('#in_charge').val(in_charge_Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">")); 
-                $('#note').val(note_Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">")); 
+                var style = "\"margin-top: 0; margin-bottom: 0;\"";
+                $('#in_charge').val(in_charge_Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));
+                $('#note').val(note_Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));
                 $("#form-register").submit();
             }
         });

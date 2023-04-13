@@ -622,7 +622,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_approved))
                 <?php
-                $user_approved = \App\User::find($circle_promoter_approval->user_approved);
+                $user_approved = \App\Models\User::find($circle_promoter_approval->user_approved);
                 $name_approved_explode = explode("　", $user_approved->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_approved}}">&times;</div>
@@ -637,7 +637,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_jan))
                 <?php
-                $user_jan = \App\User::find($circle_promoter_approval->user_jan);
+                $user_jan = \App\Models\User::find($circle_promoter_approval->user_jan);
                 $name_jan_explode = explode("　", $user_jan->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_jan}}">&times;</div>
@@ -651,7 +651,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_feb))
                 <?php
-                $user_feb = \App\User::find($circle_promoter_approval->user_feb);
+                $user_feb = \App\Models\User::find($circle_promoter_approval->user_feb);
                 $name_feb_explode = explode("　", $user_feb->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_feb}}">&times;</div>
@@ -665,7 +665,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_mar))
                 <?php
-                $user_mar = \App\User::find($circle_promoter_approval->user_mar);
+                $user_mar = \App\Models\User::find($circle_promoter_approval->user_mar);
                 $user_mar_explode = explode("　", $user_mar->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_mar}}">&times;</div>
@@ -679,7 +679,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_apr))
                 <?php
-                $user_apr = \App\User::find($circle_promoter_approval->user_apr);
+                $user_apr = \App\Models\User::find($circle_promoter_approval->user_apr);
                 $user_apr_explode = explode("　", $user_apr->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_apr}}">&times;</div>
@@ -693,7 +693,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_may))
                 <?php
-                $user_may = \App\User::find($circle_promoter_approval->user_may);
+                $user_may = \App\Models\User::find($circle_promoter_approval->user_may);
                 $user_may_explode = explode("　", $user_may->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_may}}">&times;</div>
@@ -707,7 +707,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_jun))
                 <?php
-                $user_jun = \App\User::find($circle_promoter_approval->user_jun);
+                $user_jun = \App\Models\User::find($circle_promoter_approval->user_jun);
                 $user_jun_explode = explode("　", $user_jun->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_jun}}">&times;</div>
@@ -721,7 +721,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_jul))
                 <?php
-                $user_jul = \App\User::find($circle_promoter_approval->user_jul);
+                $user_jul = \App\Models\User::find($circle_promoter_approval->user_jul);
                 $user_jul_explode = explode("　", $user_jul->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_jul}}">&times;</div>
@@ -735,7 +735,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_aug))
                 <?php
-                $user_aug = \App\User::find($circle_promoter_approval->user_aug);
+                $user_aug = \App\Models\User::find($circle_promoter_approval->user_aug);
                 $user_aug_explode = explode("　", $user_aug->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_aug}}">&times;</div>
@@ -749,7 +749,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_sep))
                 <?php
-                $user_sep = \App\User::find($circle_promoter_approval->user_sep);
+                $user_sep = \App\Models\User::find($circle_promoter_approval->user_sep);
                 $user_sep_explode = explode("　", $user_sep->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_sep}}">&times;</div>
@@ -763,7 +763,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_oct))
                 <?php
-                $user_oct = \App\User::find($circle_promoter_approval->user_oct);
+                $user_oct = \App\Models\User::find($circle_promoter_approval->user_oct);
                 $user_oct_explode = explode("　", $user_oct->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_oct}}">&times;</div>
@@ -777,7 +777,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_nov))
                 <?php
-                $user_nov = \App\User::find($circle_promoter_approval->user_nov);
+                $user_nov = \App\Models\User::find($circle_promoter_approval->user_nov);
                 $user_nov_explode = explode("　", $user_nov->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_nov}}">&times;</div>
@@ -791,7 +791,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($circle_promoter_approval->user_dec))
                 <?php
-                $user_dec = \App\User::find($circle_promoter_approval->user_dec);
+                $user_dec = \App\Models\User::find($circle_promoter_approval->user_dec);
                 $user_dec_explode = explode("　", $user_dec->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$circle_promoter_approval->user_dec}}">&times;</div>
@@ -809,7 +809,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_approved))
                 <?php
-                $user_approved = \App\User::find($place_caretaker_approval->user_approved);
+                $user_approved = \App\Models\User::find($place_caretaker_approval->user_approved);
                 $name_approved_explode = explode("　", $user_approved->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_approved}}">&times;</div>
@@ -824,7 +824,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_jan))
                 <?php
-                $user_jan = \App\User::find($place_caretaker_approval->user_jan);
+                $user_jan = \App\Models\User::find($place_caretaker_approval->user_jan);
                 $name_jan_explode = explode("　", $user_jan->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_jan}}">&times;</div>
@@ -838,7 +838,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_feb))
                 <?php
-                $user_feb = \App\User::find($place_caretaker_approval->user_feb);
+                $user_feb = \App\Models\User::find($place_caretaker_approval->user_feb);
                 $name_feb_explode = explode("　", $user_feb->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_feb}}">&times;</div>
@@ -852,7 +852,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_mar))
                 <?php
-                $user_mar = \App\User::find($place_caretaker_approval->user_mar);
+                $user_mar = \App\Models\User::find($place_caretaker_approval->user_mar);
                 $user_mar_explode = explode("　", $user_mar->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_mar}}">&times;</div>
@@ -866,7 +866,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_apr))
                 <?php
-                $user_apr = \App\User::find($place_caretaker_approval->user_apr);
+                $user_apr = \App\Models\User::find($place_caretaker_approval->user_apr);
                 $user_apr_explode = explode("　", $user_apr->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_apr}}">&times;</div>
@@ -880,7 +880,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_may))
                 <?php
-                $user_may = \App\User::find($place_caretaker_approval->user_may);
+                $user_may = \App\Models\User::find($place_caretaker_approval->user_may);
                 $user_may_explode = explode("　", $user_may->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_may}}">&times;</div>
@@ -894,7 +894,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_jun))
                 <?php
-                $user_jun = \App\User::find($place_caretaker_approval->user_jun);
+                $user_jun = \App\Models\User::find($place_caretaker_approval->user_jun);
                 $user_jun_explode = explode("　", $user_jun->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_jun}}">&times;</div>
@@ -908,7 +908,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_jul))
                 <?php
-                $user_jul = \App\User::find($place_caretaker_approval->user_jul);
+                $user_jul = \App\Models\User::find($place_caretaker_approval->user_jul);
                 $user_jul_explode = explode("　", $user_jul->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_jul}}">&times;</div>
@@ -922,7 +922,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_aug))
                 <?php
-                $user_aug = \App\User::find($place_caretaker_approval->user_aug);
+                $user_aug = \App\Models\User::find($place_caretaker_approval->user_aug);
                 $user_aug_explode = explode("　", $user_aug->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_aug}}">&times;</div>
@@ -936,7 +936,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_sep))
                 <?php
-                $user_sep = \App\User::find($place_caretaker_approval->user_sep);
+                $user_sep = \App\Models\User::find($place_caretaker_approval->user_sep);
                 $user_sep_explode = explode("　", $user_sep->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_sep}}">&times;</div>
@@ -950,7 +950,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_oct))
                 <?php
-                $user_oct = \App\User::find($place_caretaker_approval->user_oct);
+                $user_oct = \App\Models\User::find($place_caretaker_approval->user_oct);
                 $user_oct_explode = explode("　", $user_oct->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_oct}}">&times;</div>
@@ -964,7 +964,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_nov))
                 <?php
-                $user_nov = \App\User::find($place_caretaker_approval->user_nov);
+                $user_nov = \App\Models\User::find($place_caretaker_approval->user_nov);
                 $user_nov_explode = explode("　", $user_nov->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_nov}}">&times;</div>
@@ -978,7 +978,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($place_caretaker_approval->user_dec))
                 <?php
-                $user_dec = \App\User::find($place_caretaker_approval->user_dec);
+                $user_dec = \App\Models\User::find($place_caretaker_approval->user_dec);
                 $user_dec_explode = explode("　", $user_dec->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$place_caretaker_approval->user_dec}}">&times;</div>
@@ -996,7 +996,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_approved))
                 <?php
-                $user_approved = \App\User::find($department_caretaker_approval->user_approved);
+                $user_approved = \App\Models\User::find($department_caretaker_approval->user_approved);
                 $name_approved_explode = explode("　", $user_approved->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_approved}}">&times;</div>
@@ -1011,7 +1011,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_jan))
                 <?php
-                $user_jan = \App\User::find($department_caretaker_approval->user_jan);
+                $user_jan = \App\Models\User::find($department_caretaker_approval->user_jan);
                 $name_jan_explode = explode("　", $user_jan->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_jan}}">&times;</div>
@@ -1026,7 +1026,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_feb))
                 <?php
-                $user_feb = \App\User::find($department_caretaker_approval->user_feb);
+                $user_feb = \App\Models\User::find($department_caretaker_approval->user_feb);
                 $name_feb_explode = explode("　", $user_feb->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_feb}}">&times;</div>
@@ -1041,7 +1041,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_mar))
                 <?php
-                $user_mar = \App\User::find($department_caretaker_approval->user_mar);
+                $user_mar = \App\Models\User::find($department_caretaker_approval->user_mar);
                 $user_mar_explode = explode("　", $user_mar->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_mar}}">&times;</div>
@@ -1056,7 +1056,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_apr))
                 <?php
-                $user_apr = \App\User::find($department_caretaker_approval->user_apr);
+                $user_apr = \App\Models\User::find($department_caretaker_approval->user_apr);
                 $user_apr_explode = explode("　", $user_apr->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_apr}}">&times;</div>
@@ -1071,7 +1071,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_may))
                 <?php
-                $user_may = \App\User::find($department_caretaker_approval->user_may);
+                $user_may = \App\Models\User::find($department_caretaker_approval->user_may);
                 $user_may_explode = explode("　", $user_may->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_may}}">&times;</div>
@@ -1086,7 +1086,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_jun))
                 <?php
-                $user_jun = \App\User::find($department_caretaker_approval->user_jun);
+                $user_jun = \App\Models\User::find($department_caretaker_approval->user_jun);
                 $user_jun_explode = explode("　", $user_jun->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_jun}}">&times;</div>
@@ -1101,7 +1101,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_jul))
                 <?php
-                $user_jul = \App\User::find($department_caretaker_approval->user_jul);
+                $user_jul = \App\Models\User::find($department_caretaker_approval->user_jul);
                 $user_jul_explode = explode("　", $user_jul->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_jul}}">&times;</div>
@@ -1116,7 +1116,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_aug))
                 <?php
-                $user_aug = \App\User::find($department_caretaker_approval->user_aug);
+                $user_aug = \App\Models\User::find($department_caretaker_approval->user_aug);
                 $user_aug_explode = explode("　", $user_aug->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_aug}}">&times;</div>
@@ -1131,7 +1131,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_sep))
                 <?php
-                $user_sep = \App\User::find($department_caretaker_approval->user_sep);
+                $user_sep = \App\Models\User::find($department_caretaker_approval->user_sep);
                 $user_sep_explode = explode("　", $user_sep->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_sep}}">&times;</div>
@@ -1146,7 +1146,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_oct))
                 <?php
-                $user_oct = \App\User::find($department_caretaker_approval->user_oct);
+                $user_oct = \App\Models\User::find($department_caretaker_approval->user_oct);
                 $user_oct_explode = explode("　", $user_oct->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_oct}}">&times;</div>
@@ -1161,7 +1161,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_nov))
                 <?php
-                $user_nov = \App\User::find($department_caretaker_approval->user_nov);
+                $user_nov = \App\Models\User::find($department_caretaker_approval->user_nov);
                 $user_nov_explode = explode("　", $user_nov->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_nov}}">&times;</div>
@@ -1176,7 +1176,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_caretaker_approval->user_dec))
                 <?php
-                $user_dec = \App\User::find($department_caretaker_approval->user_dec);
+                $user_dec = \App\Models\User::find($department_caretaker_approval->user_dec);
                 $user_dec_explode = explode("　", $user_dec->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_caretaker_approval->user_dec}}">&times;</div>
@@ -1195,7 +1195,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_approved))
                 <?php
-                $user_approved = \App\User::find($department_manager_approval->user_approved);
+                $user_approved = \App\Models\User::find($department_manager_approval->user_approved);
                 $name_approved_explode = explode("　", $user_approved->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_approved}}">&times;</div>
@@ -1210,7 +1210,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_jan))
                 <?php
-                $user_jan = \App\User::find($department_manager_approval->user_jan);
+                $user_jan = \App\Models\User::find($department_manager_approval->user_jan);
                 $name_jan_explode = explode("　", $user_jan->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_jan}}">&times;</div>
@@ -1224,7 +1224,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_feb))
                 <?php
-                $user_feb = \App\User::find($department_manager_approval->user_feb);
+                $user_feb = \App\Models\User::find($department_manager_approval->user_feb);
                 $name_feb_explode = explode("　", $user_feb->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_feb}}">&times;</div>
@@ -1238,7 +1238,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_mar))
                 <?php
-                $user_mar = \App\User::find($department_manager_approval->user_mar);
+                $user_mar = \App\Models\User::find($department_manager_approval->user_mar);
                 $user_mar_explode = explode("　", $user_mar->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_mar}}">&times;</div>
@@ -1252,7 +1252,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_apr))
                 <?php
-                $user_apr = \App\User::find($department_manager_approval->user_apr);
+                $user_apr = \App\Models\User::find($department_manager_approval->user_apr);
                 $user_apr_explode = explode("　", $user_apr->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_apr}}">&times;</div>
@@ -1266,7 +1266,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_may))
                 <?php
-                $user_may = \App\User::find($department_manager_approval->user_may);
+                $user_may = \App\Models\User::find($department_manager_approval->user_may);
                 $user_may_explode = explode("　", $user_may->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_may}}">&times;</div>
@@ -1280,7 +1280,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_jun))
                 <?php
-                $user_jun = \App\User::find($department_manager_approval->user_jun);
+                $user_jun = \App\Models\User::find($department_manager_approval->user_jun);
                 $user_jun_explode = explode("　", $user_jun->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_jun}}">&times;</div>
@@ -1294,7 +1294,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_jul))
                 <?php
-                $user_jul = \App\User::find($department_manager_approval->user_jul);
+                $user_jul = \App\Models\User::find($department_manager_approval->user_jul);
                 $user_jul_explode = explode("　", $user_jul->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_jul}}">&times;</div>
@@ -1308,7 +1308,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_aug))
                 <?php
-                $user_aug = \App\User::find($department_manager_approval->user_aug);
+                $user_aug = \App\Models\User::find($department_manager_approval->user_aug);
                 $user_aug_explode = explode("　", $user_aug->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_aug}}">&times;</div>
@@ -1322,7 +1322,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_sep))
                 <?php
-                $user_sep = \App\User::find($department_manager_approval->user_sep);
+                $user_sep = \App\Models\User::find($department_manager_approval->user_sep);
                 $user_sep_explode = explode("　", $user_sep->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_sep}}">&times;</div>
@@ -1336,7 +1336,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_oct))
                 <?php
-                $user_oct = \App\User::find($department_manager_approval->user_oct);
+                $user_oct = \App\Models\User::find($department_manager_approval->user_oct);
                 $user_oct_explode = explode("　", $user_oct->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_oct}}">&times;</div>
@@ -1350,7 +1350,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_nov))
                 <?php
-                $user_nov = \App\User::find($department_manager_approval->user_nov);
+                $user_nov = \App\Models\User::find($department_manager_approval->user_nov);
                 $user_nov_explode = explode("　", $user_nov->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_nov}}">&times;</div>
@@ -1364,7 +1364,7 @@ $denominator_study = 0;
         <td class="stamp-box">
             @if(isset($department_manager_approval->user_dec))
                 <?php
-                $user_dec = \App\User::find($department_manager_approval->user_dec);
+                $user_dec = \App\Models\User::find($department_manager_approval->user_dec);
                 $user_dec_explode = explode("　", $user_dec->name);
                 ?>
                 <div class="remove-stamp" data-user="{{$department_manager_approval->user_dec}}">&times;</div>

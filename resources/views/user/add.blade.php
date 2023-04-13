@@ -57,51 +57,51 @@
                     <td class="td-first">役割区分</td>
                     <td>
                         <div class="qc-form-radio-group">
-                            @foreach(\App\Enums\RoleIndicatorEnum::toSelectArray() as $key => $text)
+                            @foreach(\App\Enums\RoleIndicatorEnum::asSelectArray() as $key => $text)
                                 @if($key == \App\Enums\RoleIndicatorEnum::PROMOTION_OFFICER)
                                     <label class="form-check-label">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>推進責任者</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>推進責任者</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::PROMOTION_COMMITTEE)
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }} /><span>推進委員</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }} /><span>推進委員</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::DEPARTMENT_MANAGER)
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>部門責任者</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>部門責任者</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::DEPARTMENT_CARETAKER)
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>部門世話人</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>部門世話人</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::PLACE_CARETAKER)
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>職場世話人</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>職場世話人</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::CIRCLE_PROMOTER)
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>サークル推進者</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>サークル推進者</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::MEMBER)
                                     <label class="form-check-label" for="{{'role_member'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               checked value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>メンバー</span>
+                                               checked value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>メンバー</span>
                                     </label>
                                 @elseif ($key == \App\Enums\RoleIndicatorEnum::EXECUTIVE_DIRECTOR)
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>事務局長</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>事務局長</span>
                                     </label>
                                 @else
                                     <label class="form-check-label" for="{{'role_indicator'.$loop->iteration }}">
                                         <input type="radio" class="form-check-input" id="{{ 'role_indicator'.$loop->iteration }}" name="role_indicator"
-                                               value="{{ $key }}" {{ (Input::old("role_indicator") == $key ? "checked":"") }}/><span>事務局員</span>
+                                               value="{{ $key }}" {{ (old("role_indicator") == $key ? "checked":"") }}/><span>事務局員</span>
                                     </label>
                                 @endif
                             @endforeach
@@ -173,11 +173,11 @@
                         <div class="qc-form-radio-group">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" id="access_authority1" name="access_authority"
-                                       checked value="{{ \App\Enums\AccessAuthority::USER }}" {{ (Input::old("access_authority") == \App\Enums\AccessAuthority::USER ? "checked":"") }}><span>一般利用者</span>
+                                       checked value="{{ \App\Enums\AccessAuthority::USER }}" {{ (old("access_authority") == \App\Enums\AccessAuthority::USER ? "checked":"") }}><span>一般利用者</span>
                             </label>
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" id="access_authority2" name="access_authority"
-                                       value="{{ \App\Enums\AccessAuthority::ADMIN }}" {{ (Input::old("access_authority") == \App\Enums\AccessAuthority::ADMIN ? "checked":"") }}><span>管理者</span>
+                                       value="{{ \App\Enums\AccessAuthority::ADMIN }}" {{ (old("access_authority") == \App\Enums\AccessAuthority::ADMIN ? "checked":"") }}><span>管理者</span>
                             </label>
                         </div>
                     </td>
@@ -194,11 +194,11 @@
                         <div class="qc-form-radio-group">
                             <label class="form-check-label" >
                                 <input type="radio" class="form-check-input" id="statistic_classification1" name="statistic_classification"
-                                       value="1" {{ (Input::old("statistic_classification") == 1 ? "checked":"") }}><span>集計しない</span>
+                                       value="1" {{ (old("statistic_classification") == 1 ? "checked":"") }}><span>集計しない</span>
                             </label>
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" id="statistic_classification2" name="statistic_classification"
-                                       checked value="2" {{ (Input::old("statistic_classification") == 2 ? "checked":"") }}><span>集計対象とする</span>
+                                       checked value="2" {{ (old("statistic_classification") == 2 ? "checked":"") }}><span>集計対象とする</span>
                             </label>
                         </div>
                     </td>
@@ -209,11 +209,11 @@
                         <div class="qc-form-radio-group">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" id="use_classification1" name="use_classification"
-                                       value="1" {{ (Input::old("use_classification") == 1 ? "checked":"") }}><span>使用しない</span>
+                                       value="1" {{ (old("use_classification") == 1 ? "checked":"") }}><span>使用しない</span>
                             </label>
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" id="use_classification2" name="use_classification"
-                                       checked value="2" {{ (Input::old("use_classification") == 2 ? "checked":"") }}><span>使用する</span>
+                                       checked value="2" {{ (old("use_classification") == 2 ? "checked":"") }}><span>使用する</span>
                             </label>
 
                         </div>

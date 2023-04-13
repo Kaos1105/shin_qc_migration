@@ -49,7 +49,6 @@ use App\Http\Controllers\ToppageController;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\MemberMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

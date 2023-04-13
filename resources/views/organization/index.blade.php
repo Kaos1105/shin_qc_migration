@@ -103,8 +103,8 @@
         @if(isset($department))
         @foreach($department as $department_item)
         <?php
-        $bs = \App\User::find($department_item->bs_id);
-        $sw = \App\User::find($department_item->sw_id);
+        $bs = \App\Models\User::find($department_item->bs_id);
+        $sw = \App\Models\User::find($department_item->sw_id);
         $place_list = DB::table('places')->where('use_classification', 2)->where('department_id', $department_item->id)->get();
         ?>
         addNewNode(2, "departmentbs{{$department_item->id}}", '{{ URL::to('user/'.$department_item->bs_id.'?callback=yes') }}', '{{ $bs->name }}', 'theBoss', "", "{{ URL::to('department/'.$department_item->id.'?callback=yes') }}", "{{ $department_item->department_name }}");
@@ -112,25 +112,25 @@
         @if(isset($place_list))
         @foreach($place_list as $place_list_item)
         <?php
-        $place_user = \App\User::find($place_list_item->user_id);
+        $place_user = \App\Models\User::find($place_list_item->user_id);
         $circle_list = DB::table('circles')->where('place_id', $place_list_item->id)->where('use_classification', \App\Enums\UseClassificationEnum::USES)->get();
         ?>
         addNewNode(4, "place{{$place_list_item->id}}", "{{ URL::to('user/'.$place_list_item->user_id.'?callback=yes') }}", "{{ $place_user->name }}", "departmentsw{{$department_item->id}}", "", "{{ URL::to('place/'.$place_list_item->id.'?callback=yes') }}", "{{ $place_list_item->place_name }}");
         @if(isset($circle_list))
         @foreach($circle_list as $circle_list_item)
         <?php
-        $circle_user = \App\User::find($circle_list_item->user_id);
+        $circle_user = \App\Models\User::find($circle_list_item->user_id);
         $leader = DB::table('members')->where('circle_id', $circle_list_item->id)->where('is_leader', 2)->first();
         $member_list = DB::table('members')->where('circle_id', $circle_list_item->id)->where('is_leader', 1)->get();
         ?>
         addNewNode(5, "circle{{$circle_list_item->id}}", "{{ URL::to('user/'.$circle_list_item->user_id.'?callback=yes') }}", "{{ $circle_user->name }}", "place{{$place_list_item->id}}", "", "{{ URL::to('circle/'.$circle_list_item->id.'?callback=yes') }}", "{{ $circle_list_item->circle_name }}");
         @if(isset($leader))
-        <?php $leader_user = \App\User::find($leader->user_id); ?>
+        <?php $leader_user = \App\Models\User::find($leader->user_id); ?>
         addNewNode(6, "memberleader{{$leader->id}}", "{{ URL::to('user/'.$leader->user_id.'?callback=yes') }}", "{{ $leader_user->name }}", "circle{{$circle_list_item->id}}", "");
         @if(isset($member_list))
         <?php $member_stt = 7; ?>
         @for($i = 0; $i < count($member_list); $i++)
-        <?php $member_user = \App\User::find($member_list[$i]->user_id); ?>
+        <?php $member_user = \App\Models\User::find($member_list[$i]->user_id); ?>
         addNewNode({{$member_stt++}}, "member{{$member_list[$i]->id}}", "{{ URL::to('user/'.$member_list[$i]->user_id.'?callback=yes') }}", "{{ $member_user->name }}", @if($i == 0) "memberleader{{$leader->id}}"
         @else "member{{$member_list[$i-1]->id}}" @endif, ""
         )

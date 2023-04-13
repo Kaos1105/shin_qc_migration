@@ -150,7 +150,7 @@
             <?php $sttMembers = 1; ?>
             @foreach($list_member as $item)
                 <?php
-                $user = App\User::find($item->user_id);
+                $user = App\Models\User::find($item->user_id);
                 ?>
                 <tr>
                     <td class="text-center">

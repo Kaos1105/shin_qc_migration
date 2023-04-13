@@ -24,9 +24,9 @@
         <button class="btn btn-back" onclick="window.history.back()">戻る</button>
     </div>
     <div class="container-fluid bottom-fix">
-        <form id="form-register" method="POST" action="{{ action('ActivityController@store') }}">
+        <form id="form-register" method="POST" action="{{ route('activity.store') }}">
             @csrf
-            <?php 
+            <?php
                 $filterYear = isset($_GET['year']) ? $_GET['year'] : date('Y');
             ?>
             <input type="hidden" value="{{ $filterYear }}" name="filterYear">
@@ -208,16 +208,16 @@
                                name="content2" id="content2">
                         <div id="content2-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>
                         <input type="file" class="dialog-file-input dialog-l" name="attachmentContent"
-                           id="multipleFileContent"/>               
-                        <div id="previewUploadFile">     
+                           id="multipleFileContent"/>
+                        <div id="previewUploadFile">
                             <?php
                                 $fileIds = '';
                                 $count = 0;
                             ?>
-                            @foreach ($ContentFiles as $contentfile)                         
+                            @foreach ($ContentFiles as $contentfile)
                                 <span><a href="{{route("uploadfile.downloadFile",$contentfile->id)}}">{{$contentfile->FileNameOriginal}}</a>
-                                <i class="fa fa-trash" style="cursor:pointer" onclick="deleteFileOutActivity( {{ $contentfile->id }} )" id="{{$contentfile->id}}"></i><br/></span>  
-                                <?php 
+                                <i class="fa fa-trash" style="cursor:pointer" onclick="deleteFileOutActivity( {{ $contentfile->id }} )" id="{{$contentfile->id}}"></i><br/></span>
+                                <?php
                                     $fileIds .= $contentfile->id;
                                     $count++;
                                     if($count < count($ContentFiles))
@@ -238,7 +238,7 @@
                                   name="content3">{{ old('content3', isset($activity)? $activity->content3 : null) }}</textarea>-->
                         <input type="hidden" value="{{ old('content3', isset($activity)? $activity->content3 : null) }}"
                                name="content3" id="content3">
-                        <div id="content3-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>    
+                        <div id="content3-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -249,7 +249,7 @@
                                   name="content4">{{ old('content4', isset($activity)? $activity->content4 : null) }}</textarea>-->
                         <input type="hidden" value="{{ old('content4', isset($activity)? $activity->content4 : null) }}"
                                name="content4" id="content4">
-                        <div id="content4-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>   
+                        <div id="content4-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -260,7 +260,7 @@
                                   name="content5">{{ old('content5', isset($activity)? $activity->content5 : null) }}</textarea>-->
                         <input type="hidden" value="{{ old('content5', isset($activity)? $activity->content5 : null) }}"
                                name="content5" id="content5">
-                        <div id="content5-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>  
+                        <div id="content5-editor" style="margin-bottom: 10px;min-height: 50px;background-color: #ffffff;margin-right: 5px;"></div>
                     </td>
                 </tr>
             </table>
@@ -319,7 +319,7 @@
     </div>
 
 <script>
-        <?php 
+        <?php
             function encodeURI($uri)
             {
                 return preg_replace_callback("{[^0-9a-z_.!~*'();,/?:@&=+$#-]}i", function ($m) {
@@ -352,7 +352,7 @@
 //            theme: 'snow'
 //        });
 //        actitivityTitleEditor.root.innerHTML = '<?php echo old('activity_title', isset($activity)? $activity->activity_title : '') ?>' ;
-        
+
         var content2Editor = new Quill('#content2-editor', {
             bounds: '#content2-editor',
             modules: {
@@ -360,8 +360,8 @@
             },
             placeholder: "下記のボックスの中に、職場の問題を書き出してください...",
             theme: 'snow'
-        });    
-        var content2_Text = decodeURIComponent('<?php echo old('content2', isset($activity)? encodeURI($activity->content2) : '') ?>');        
+        });
+        var content2_Text = decodeURIComponent('<?php echo old('content2', isset($activity)? encodeURI($activity->content2) : '') ?>');
         if(content2_Text.indexOf("<p") == -1 && content2_Text.indexOf("<p/") == -1)
         {
             content2Editor.root.innerHTML = "<p>"+content2_Text+"</p>";
@@ -370,7 +370,7 @@
         {
             content2Editor.root.innerHTML = content2_Text;
         }
-        
+
         var content3Editor = new Quill('#content3-editor', {
             bounds: '#content3-editor',
             modules: {
@@ -379,7 +379,7 @@
             placeholder: "下記のボックスの中に、職場の問題を書き出してください...",
             theme: 'snow'
         });
-        var content3_Text = decodeURIComponent('<?php echo old('content3', isset($activity)? encodeURI($activity->content3) : '') ?>');        
+        var content3_Text = decodeURIComponent('<?php echo old('content3', isset($activity)? encodeURI($activity->content3) : '') ?>');
         if(content3_Text.indexOf("<p") == -1 && content3_Text.indexOf("<p/") == -1)
         {
             content3Editor.root.innerHTML = "<p>"+content3_Text+"</p>";
@@ -388,7 +388,7 @@
         {
             content3Editor.root.innerHTML = content3_Text;
         }
-        
+
         var content4Editor = new Quill('#content4-editor', {
             bounds: '#content4-editor',
             modules: {
@@ -397,7 +397,7 @@
             placeholder: "下記のボックスの中に、職場の問題を書き出してください...",
             theme: 'snow'
         });
-        var content4_Text = decodeURIComponent('<?php echo old('content4', isset($activity)? encodeURI($activity->content4) : '') ?>');        
+        var content4_Text = decodeURIComponent('<?php echo old('content4', isset($activity)? encodeURI($activity->content4) : '') ?>');
         if(content4_Text.indexOf("<p") == -1 && content4_Text.indexOf("<p/") == -1)
         {
             content4Editor.root.innerHTML = "<p>"+content4_Text+"</p>";
@@ -406,7 +406,7 @@
         {
             content4Editor.root.innerHTML = content4_Text;
         }
-        
+
         var content5Editor = new Quill('#content5-editor', {
             bounds: '#content5-editor',
             modules: {
@@ -415,7 +415,7 @@
             placeholder: "下記のボックスの中に、職場の問題を書き出してください...",
             theme: 'snow'
         });
-        var content5_Text = decodeURIComponent('<?php echo old('content5', isset($activity)? encodeURI($activity->content5) : '') ?>') ; 
+        var content5_Text = decodeURIComponent('<?php echo old('content5', isset($activity)? encodeURI($activity->content5) : '') ?>') ;
         if(content5_Text.indexOf("<p") == -1 && content5_Text.indexOf("<p/") == -1)
         {
             content5Editor.root.innerHTML = "<p>"+content5_Text+"</p>";
@@ -423,7 +423,7 @@
         else
         {
             content5Editor.root.innerHTML = content5_Text;
-        }         
+        }
 </script>
     <script>
         $(document).ready(function () {
@@ -496,7 +496,7 @@
 //                if(actitivityTitleEditor.getText().trim() == "")
 //                {
 //                    $('#activity_title').val(null);
-//                }  
+//                }
 //                else
 //                {
 //                    $('#activity_title').val(actitivityTitleEditor.root.innerHTML.replace(/'/g,"\"").replace("<p>","<p style=" + style +">"));
@@ -504,7 +504,7 @@
                 $('#content2').val(content2Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));
                 $('#content3').val(content3Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));
                 $('#content4').val(content4Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));
-                $('#content5').val(content5Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));  
+                $('#content5').val(content5Editor.root.innerHTML.replace(/'/g,"\"").replace(/<p>/g,"<p style=" + style +">"));
                 $("#form-register").submit()
             }
         });
@@ -627,11 +627,11 @@
 //            if (types.indexOf(ext) === -1) {
 //                alert("{{\App\Enums\StaticConfig::$File_Not_Allowed}}");
 //                this.value = "";
-//            } else 
+//            } else
             if (this.files[0].size > 5242880) {
                 alert("{{\App\Enums\StaticConfig::$File_Size_5M}}");
                 this.value = "";
-            }     
+            }
             else
             {
                 if(inputName === "attachmentContent")
@@ -644,33 +644,33 @@
                         processData: false,
                         cache: false,
                         contentType: false,
-                        success: function (data) { //previewUploadFile  
+                        success: function (data) { //previewUploadFile
                             $('#multipleFileContent').val('');
                             //add element
                             var routeUrl = '{{route("uploadfile.downloadFile",":fileid")}}';
                             routeUrl = routeUrl.replace(':fileid', data.id);
                             $( "#previewUploadFile" ).append( "<span><a href="+routeUrl+">"+ data.FileNameOriginal +"</a> \n\
-                            <i class=\"fa fa-trash\" style=\"cursor:pointer\" onclick=\"deleteFileOutActivity(" + data.id +")\" id="+ data.id +"></i><br/></span>");     
-                            //add to list id file  
+                            <i class=\"fa fa-trash\" style=\"cursor:pointer\" onclick=\"deleteFileOutActivity(" + data.id +")\" id="+ data.id +"></i><br/></span>");
+                            //add to list id file
                             let fileIds = $('#contentFileIds').val();
                             let arrExistIds = [];
                             if(fileIds != "" && fileIds != null)
                             {
-                                arrExistIds = fileIds.split(',');          
-                            }                                   
-                            arrExistIds.push(data.id);                       
+                                arrExistIds = fileIds.split(',');
+                            }
+                            arrExistIds.push(data.id);
                             $('#contentFileIds').val(arrExistIds.join());
                         },
-                        error: function (error) {  
+                        error: function (error) {
                             alert(error);
                         }
-                    });              
-                }               
+                    });
+                }
             }
         });
-   
+
         function deleteFileOutActivity(fileId)
-        {    
+        {
             $('#'+fileId).parent().remove();
             let existIds = $('#contentFileIds').val();
             let arrExistIds = existIds.split(',');

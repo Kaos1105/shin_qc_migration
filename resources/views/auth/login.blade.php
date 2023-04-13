@@ -34,7 +34,7 @@
                         </div>
                         <br>
                         <select class="login-input form-control" name="access_authority">
-                            @foreach(\App\Enums\AccessAuthority::toSelectArray() as $key => $text)
+                            @foreach(\App\Enums\AccessAuthority::asSelectArray() as $key => $text)
                                 @if ($key === \App\Enums\AccessAuthority::USER)
                                     <option @if((int) old('access_authority') === $key) selected
                                             @endif value="{{ $key }}">サークル用ページにログイン

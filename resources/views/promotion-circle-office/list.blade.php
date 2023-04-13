@@ -52,7 +52,7 @@
             @foreach ($paginate as $item)
                 <?php
                 $stt++;
-                $circle = \App\Circle::find($item->circle_id);
+                $circle = \App\Models\Circle::find($item->circle_id);
                 $meeting_list = DB::table('activities')->where('circle_id', $item->circle_id)->where('activity_category', \App\Enums\Activity::MEETING)->whereYear('date_execution', $item->year)->get();
                 $total_time = 0.0;
                 if (isset($meeting_list)) {

@@ -65,7 +65,7 @@
                 <td class="td-first">サークル推進者</td>
                 <td>
                     <?php
-                        $user = \App\User::find($circle->user_id);
+                        $user = \App\Models\User::find($circle->user_id);
                     ?>
                     <span>
                         <a class="a-black" href="{{ URL::to('user/'.$user->id.'?callback=yes') }}">({{ $place->place_name }}) @if(isset($user->position)) ({{ $user->position }}) @endif {{ $user->name }}</a>
@@ -153,7 +153,7 @@
             <?php $sttMembers = 1; ?>
             @foreach($list_member as $item)
             <?php
-            $user =  App\User::find($item->user_id);
+            $user =  App\Models\User::find($item->user_id);
             ?>
             <tr>
                 <td class="text-center">
