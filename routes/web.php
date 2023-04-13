@@ -11,21 +11,46 @@
 |
 */
 
+use App\Http\Controllers\ActivityApprovalController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivityOfficeController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CircleController;
+use App\Http\Controllers\CircleLevelController;
+use App\Http\Controllers\CircleLevelOfficeController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EducationalMaterialsCircleController;
 use App\Http\Controllers\EducationalMaterialsController;
+use App\Http\Controllers\ExcelExportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\KeepSortController;
+use App\Http\Controllers\LibraryCircleController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NaviController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PlanByMonthController;
 use App\Http\Controllers\PlanByYearController;
+use App\Http\Controllers\PromotionCircleController;
+use App\Http\Controllers\PromotionCircleOfficeController;
+use App\Http\Controllers\PromotionThemeController;
+use App\Http\Controllers\QaController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\ThemeOfficeController;
+use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ToppageController;
+use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\MemberMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +61,7 @@ Route::get('/', function () {
     return redirect()->route('toppageoffice');
 });
 
+Auth::routes();
 Route::get('login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('login', [LoginController::class, 'doLogin'])->name('doLogin');
 Route::get('logout', [LoginController::class, 'doLogout'])->name('doLogout');
@@ -50,7 +76,7 @@ Route::get('/test-url',  [HomeController::class, 'testUrl'])->name('testUrl');
 
 Route::post('/keep-sort', [KeepSortController::class, 'postSortKeys'])->name('keep-sort');
 
-Route::group(['middleware' => ['App\Http\Middleware\AdminMiddleware', 'auth']], function () {
+Route::middleware([AdminMiddleware::class, 'auth'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::get('/user/{id}/edit', [UserController::class, 'edit']);
@@ -121,163 +147,163 @@ Route::group(['middleware' => ['App\Http\Middleware\AdminMiddleware', 'auth']], 
     Route::resource('/homepage', HomepageController::class)->except(['show', 'update']);
     Route::get('/homepage/create', [HomepageController::class, 'create'])->name('homepage.create');
     Route::get('/homepage/{id}', [HomepageController::class, 'show'])->name('homepage.show');
-    Route::get('/homepage/{id}/edit', 'HomepageController@edit');
-    Route::put('/homepage/{id}', 'HomepageController@update')->name('homepage.update');
-    Route::get('homepage/delete/{id}', ['as' => 'homepage.delete', 'uses' => 'HomepageController@destroy']);
+    Route::get('/homepage/{id}/edit', [HomepageController::class, 'edit']);
+    Route::put('/homepage/{id}', [HomepageController::class, 'update'])->name('homepage.update');
+    Route::get('homepage/delete/{id}', [HomepageController::class, 'destroy'])->name('homepage.delete');
 
-    Route::get('/promotion-circle-office', 'PromotionCircleOfficeController@index');
-    Route::get('/promotion-circle-office/{id}', 'PromotionCircleOfficeController@show');
-    Route::post('/promotion-circle-office/remove-stamp', 'PromotionCircleOfficeController@removeStamp')->name('promotion-circle-office.remove-stamp');
+    Route::get('/promotion-circle-office', [PromotionCircleOfficeController::class, 'index']);
+    Route::get('/promotion-circle-office/{id}',  [PromotionCircleOfficeController::class, 'show']);
+    Route::post('/promotion-circle-office/remove-stamp',  [PromotionCircleOfficeController::class, 'removeStamp'])->name('promotion-circle-office.remove-stamp');
 
-    Route::resource('/organization', 'OrganizationController');
+    Route::resource('/organization', OrganizationController::class );
 
-    Route::resource('/circlelevel-office', 'CircleLevelOfficeController');
+    Route::resource('/circlelevel-office', CircleLevelOfficeController::class);
     //    Route::get('/circlelevel-office/{id}', 'CircleLevelOfficeController@index');
 
     Route::group(['prefix' => 'story'], function () {
-        Route::get('list', ['as' => 'story.getList', 'uses' => 'StoryController@getList']);
-        Route::get('show/{id}', ['as' => 'story.getShow', 'uses' => 'StoryController@getShow']);
-        Route::get('add', ['as' => 'story.getAdd', 'uses' => 'StoryController@getAdd']);
-        Route::post('add', ['as' => 'story.postAdd', 'uses' => 'StoryController@postAdd']);
-        Route::post('delete/{id}', ['as' => 'story.postDelete', 'uses' => 'StoryController@postDelete']);
-        Route::get('edit/{id}', ['as' => 'story.getEdit', 'uses' => 'StoryController@getEdit']);
-        Route::post('edit/{id}', ['as' => 'story.postEdit', 'uses' => 'StoryController@postEdit']);
-        Route::post('change', ['as' => 'story.postChangeDisplayOrder', 'uses' => 'StoryController@postChangeDisplayOrder']);
+        Route::get('list', [StoryController::class, 'getList'])->name('story.getList');
+        Route::get('show/{id}', [StoryController::class, 'getShow'])->name('story.getShow');
+        Route::get('add', [StoryController::class, 'getAdd'])->name('story.getAdd');
+        Route::post('add', [StoryController::class, 'postAdd'])->name('story.postAdd');
+        Route::post('delete/{id}', [StoryController::class, 'postDelete'])->name('story.postDelete');
+        Route::get('edit/{id}', [StoryController::class, 'getEdit'])->name('story.getEdit');
+        Route::post('edit/{id}', [StoryController::class, 'postEdit'])->name('story.postEdit');
+        Route::post('change', [StoryController::class, 'postChangeDisplayOrder'])->name('story.postChangeDisplayOrder');
     });
 
     Route::group(['prefix' => 'qa'], function () {
-        Route::get('list', ['as' => 'qa.getList', 'uses' => 'QaController@getList']);
-        Route::get('show/{id}', ['as' => 'qa.getShow', 'uses' => 'QaController@getShow']);
-        Route::get('add', ['as' => 'qa.getAdd', 'uses' => 'QaController@getAdd']);
-        Route::post('add', ['as' => 'qa.postAdd', 'uses' => 'QaController@postAdd']);
-        Route::post('delete/{id}', ['as' => 'qa.postDelete', 'uses' => 'QaController@postDelete']);
-        Route::get('edit/{id}', ['as' => 'qa.getEdit', 'uses' => 'QaController@getEdit']);
-        Route::post('edit/{id}', ['as' => 'qa.postEdit', 'uses' => 'QaController@postEdit']);
-        Route::post('change', ['as' => 'qa.postChangeDisplayOrder', 'uses' => 'QaController@postChangeDisplayOrder']);
-        Route::post('question-add', ['as' => 'qa.postQuestion', 'uses' => 'QaController@postQuestion']);
-        Route::get('question-delete', ['as' => 'qa.deleteQuestion', 'uses' => 'QaController@deleteQuestion']);
-        Route::get('question-disp', ['as' => 'qa.dispQuestion', 'uses' => 'QaController@dispQuestion']);
-        Route::get('question-align', ['as' => 'qa.alignQuestion', 'uses' => 'QaController@alignQuestion']);
-        Route::post('question-edit', ['as' => 'qa.editQuestion', 'uses' => 'QaController@editQuestion']);
-        Route::post('answer-add', ['as' => 'qa.postAnswer', 'uses' => 'QaController@postAnswer']);
-        Route::get('answer-delete', ['as' => 'qa.deleteAnswer', 'uses' => 'QaController@deleteAnswer']);
-        Route::get('answer-disp', ['as' => 'qa.dispAnswer', 'uses' => 'QaController@dispAnswer']);
-        Route::get('answer-align', ['as' => 'qa.alignAnswer', 'uses' => 'QaController@alignAnswer']);
-        Route::post('answer-edit', ['as' => 'qa.editAnswer', 'uses' => 'QaController@editAnswer']);
+        Route::get('list', [QaController::class, 'getList'])->name('qa.getList');
+        Route::get('show/{id}', [QaController::class, 'getShow'])->name('qa.getShow');
+        Route::get('add', [QaController::class, 'getAdd'])->name('qa.getAdd');
+        Route::post('add', [QaController::class, 'postAdd'])->name('qa.postAdd');
+        Route::post('delete/{id}', [QaController::class, 'postDelete'])->name('qa.postDelete');
+        Route::get('edit/{id}', [QaController::class, 'getEdit'])->name('qa.getEdit');
+        Route::post('edit/{id}', [QaController::class, 'postEdit'])->name('qa.postEdit');
+        Route::post('change', [QaController::class, 'postChangeDisplayOrder'])->name('qa.postChangeDisplayOrder');
+        Route::post('question-add', [QaController::class, 'postQuestion'])->name('qa.postQuestion');
+        Route::get('question-delete', [QaController::class, 'deleteQuestion'])->name('qa.deleteQuestion');
+        Route::get('question-disp', [QaController::class, 'dispQuestion'])->name('qa.dispQuestion');
+        Route::get('question-align', [QaController::class, 'alignQuestion'])->name('qa.alignQuestion');
+        Route::post('question-edit', [QaController::class, 'editQuestion'])->name('qa.editQuestion');
+        Route::post('answer-add', [QaController::class, 'postAnswer'])->name('qa.postAnswer');
+        Route::get('answer-delete', [QaController::class, 'deleteAnswer'])->name('qa.deleteAnswer');
+        Route::get('answer-disp', [QaController::class, 'dispAnswer'])->name('qa.dispAnswer');
+        Route::get('answer-align', [QaController::class, 'alignAnswer'])->name('qa.alignAnswer');
+        Route::post('answer-edit', [QaController::class, 'editAnswer'])->name('qa.editAnswer');
     });
 
     Route::group(['prefix' => 'theme-office'], function () {
-        Route::get('list', ['as' => 'theme-office.getList', 'uses' => 'ThemeOfficeController@getList']);
-        Route::get('show/{id}', ['as' => 'theme-office.getShow', 'uses' => 'ThemeOfficeController@getShow']);
+        Route::get('list', [ThemeOfficeController::class, 'getList'])->name('theme-office.getList');
+        Route::get('show/{id}', [ThemeOfficeController::class, 'getShow'])->name('theme-office.getShow');
     });
 
     Route::group(['prefix' => 'activity-office'], function () {
-        Route::get('list', ['as' => 'activity-office.getList', 'uses' => 'ActivityOfficeController@getList']);
-        Route::get('show/{id}', ['as' => 'activity-office.getShow', 'uses' => 'ActivityOfficeController@getShow']);
+        Route::get('list', [ActivityOfficeController::class, 'getList'])->name('activity-office.getList');
+        Route::get('show/{id}', [ActivityOfficeController::class, 'getShow'])->name('activity-office.getShow');
     });
-    Route::put('/activity-office/updateSecretariatEntry', 'ActivityOfficeController@updateSecretariatEntry')->name('activityoffice.updateSecretariatEntry');
-    Route::get('/managementfile/downloadFile/{id}', ['as' => 'uploadfile.downloadFileActivityManagement', 'uses' => 'UploadFileController@downloadFile']);
+    Route::put('/activity-office/updateSecretariatEntry', [ActivityOfficeController::class, 'updateSecretariatEntry'])->name('activityoffice.updateSecretariatEntry');
+    Route::get('/managementfile/downloadFile/{id}', [UploadFileController::class, 'downloadFile'])->name('uploadfile.downloadFileActivityManagement');
 });
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::resource('/category', 'CategoryController')->except(['update']);
-    Route::get('/category/list', 'CategoryController@list');
-    Route::get('/category/add', 'CategoryController@add');
-    Route::get('/category/{id}/edit', 'CategoryController@edit');
-    Route::put('/category/{id}', 'CategoryController@update')->name('category.update');
-    Route::delete('/category/{id}', 'CategoryController@destroy');
+    Route::resource('/category', CategoryController::class)->except(['update']);
+    Route::get('/category/list', [CategoryController::class, 'index']);
+    Route::get('/category/add', [CategoryController::class, 'create']);
+    Route::get('/category/{id}/edit', [CategoryController::class, 'edit']);
+    Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
 
-    Route::resource('/thread', 'ThreadController')->except(['update']);
-    Route::get('/thread/{id}', 'ThreadController@show');
-    Route::get('/thread/add/{id}', 'ThreadController@create');
-    Route::get('/thread/{id}/edit', 'ThreadController@edit');
-    Route::put('/thread/{id}', 'ThreadController@update')->name('thread.update');
-    Route::delete('/thread/{id}', 'ThreadController@destroy');
+    Route::resource('/thread', ThreadController::class)->except(['update']);
+    Route::get('/thread/{id}', [ThreadController::class, 'show']);
+    Route::get('/thread/add/{id}', [ThreadController::class, 'create']);
+    Route::get('/thread/{id}/edit', [ThreadController::class, 'edit']);
+    Route::put('/thread/{id}', [ThreadController::class, 'update'])->name('thread.update');
+    Route::delete('/thread/{id}', [ThreadController::class, 'destroy']);
 
-    Route::resource('/topic', 'TopicController');
-    Route::get('/topic/{id}', 'TopicController@show');
-    Route::get('/topic/add/{id}', 'TopicController@create');
-    Route::get('/topic/{id}/edit', 'TopicController@edit');
-    Route::get('topic/delete/{topic_id}/{thread_id}', ['as' => 'topic.delete', 'uses' => 'TopicController@destroy']);
+    Route::resource('/topic', TopicController::class);
+    Route::get('/topic/{id}', [TopicController::class, 'show']);
+    Route::get('/topic/add/{id}', [TopicController::class, 'create']);
+    Route::get('/topic/{id}/edit', [TopicController::class, 'edit']);
+    Route::get('topic/delete/{topic_id}/{thread_id}', [TopicController::class, 'destroy'])->name('topic.delete');
 
-    Route::resource('/calendar', 'CalendarController')->except(['destroy', 'update']);
-    Route::get('/calendar', 'CalendarController@index')->name('calendar.index');
-    Route::put('/calendar', 'CalendarController@update')->name('calendar.update');
-    Route::put('/calendar', 'CalendarController@destroy')->name('calendar.destroy');
+    Route::resource('/calendar', CalendarController::class)->except(['destroy', 'update']);
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+    Route::put('/calendar', [CalendarController::class, 'update'])->name('calendar.update');
+    Route::put('/calendar', [CalendarController::class, 'destroy'])->name('calendar.destroy');
 
-    Route::resource('/theme', 'ThemeController');
-    Route::get('/theme/{id}', 'ThemeController@show');
+    Route::resource('/theme', ThemeController::class);
+    Route::get('/theme/{id}', [ThemeController::class, 'show']);
 
-    Route::resource('/promotion-circle', 'PromotionCircleController');
-    Route::get('/promotion-circle', 'PromotionCircleController@index')->name('promotioncircle.index');
-    Route::get('/promotion-circle/history', 'PromotionCircleController@show')->name('promotioncircle.history');
+    Route::resource('/promotion-circle', PromotionCircleController::class);
+    Route::get('/promotion-circle', [PromotionCircleController::class, 'index'])->name('promotioncircle.index');
+    Route::get('/promotion-circle/history', [PromotionCircleController::class, 'show'])->name('promotioncircle.history');
 
-    Route::resource('/circlelevel', 'CircleLevelController');
+    Route::resource('/circlelevel', CircleLevelController::class);
 
-    Route::resource('/activity', 'ActivityController')->except(['destroy', 'update']);
+    Route::resource('/activity', ActivityController::class)->except(['destroy', 'update']);
 
-    Route::resource('/library-circle', 'LibraryCircleController');
-    Route::get('/download-circle/{filePath}', ['as' => 'library-circle.download', 'uses' => 'LibraryCircleController@download']);
+    Route::resource('/library-circle', LibraryCircleController::class);
+    Route::get('/download-circle/{filePath}', [LibraryCircleController::class, 'download'])->name('library-circle.download');
 
-    Route::resource('/educational-materials-circle', 'EducationalMaterialsCircleController');
-    Route::get('/educational-materials-download-circle/{filePath}', ['as' => 'educational-materials-circle.download', 'uses' => 'EducationalMaterialsCircleController@download']);
+    Route::resource('/educational-materials-circle', EducationalMaterialsCircleController::class);
+    Route::get('/educational-materials-download-circle/{filePath}', [EducationalMaterialsCircleController::class, 'download'])->name('educational-materials-circle.download');
 
     Route::group(['prefix' => 'qc-navi'], function () {
-        Route::get('story-classification', ['as' => 'navi.getStoryClassification', 'uses' => 'NaviController@getStoryClassification']);
-        Route::get('story-list/{id}', ['as' => 'navi.getStoryList', 'uses' => 'NaviController@getStoryList']);
-        Route::get('story-navi', ['as' => 'navi.getStoryNavi', 'uses' => 'NaviController@getStoryNavi']);
-        Route::get('story-navi-download', ['as' => 'navi.downloadNavi', 'uses' => 'NaviController@downloadNavi']);
-        Route::get('navi-history', ['as' => 'navi.history', 'uses' => 'NaviController@getHistory']);
-        Route::get('navi-detail/{history_id}', ['as' => 'navi.detail', 'uses' => 'NaviController@getDetail']);
-        Route::get('navi-finish/{history_id}/{classification}', ['as' => 'navi.finish', 'uses' => 'NaviController@finishNavi']);
-        Route::get('navi-delete-detail/{id}', ['as' => 'navi.deleteDetail', 'uses' => 'NaviController@deleteDetail']);
-        Route::post('navi-add-details', ['as' => 'navi.addDetails', 'uses' => 'NaviController@addDetails']);
+        Route::get('story-classification', [NaviController::class, 'getStoryClassification'])->name('navi.getStoryClassification');
+        Route::get('story-list/{id}', [NaviController::class, 'getStoryList'])->name('navi.getStoryList');
+        Route::get('story-navi', [NaviController::class, 'getStoryNavi'])->name('navi.NaviController');
+        Route::get('story-navi-download', [NaviController::class, 'downloadNavi'])->name('navi.downloadNavi');
+        Route::get('navi-history', [NaviController::class, 'getHistory'])->name('navi.history');
+        Route::get('navi-detail/{history_id}', [NaviController::class, 'getDetail'])->name('navi.detail');
+        Route::get('navi-finish/{history_id}/{classification}', [NaviController::class, 'finishNavi'])->name('navi.finish');
+        Route::get('navi-delete-detail/{id}', [NaviController::class, 'deleteDetail'])->name('navi.deleteDetail');
+        Route::post('navi-add-details', [NaviController::class, 'addDetails'])->name('navi.addDetails');
     });
 
-    Route::get('qa/show-qa/{id}', ['as' => 'qa.getShowQa', 'uses' => 'QaController@getShowQa']);
-    Route::get('story/show-story/{id}', ['as' => 'story.getShowStory', 'uses' => 'StoryController@getShowStory']);
+    Route::get('qa/show-qa/{id}', [QaController::class, 'getShowQa'])->name('qa.getShowQa');
+    Route::get('story/show-story/{id}', [StoryController::class, 'getShowStory'])->name('story.getShowStory');
 });
 
-Route::group(['middleware' => ['auth', 'App\Http\Middleware\MemberMiddleware']], function () {
+Route::middleware(['auth', MemberMiddleware::class])->group(function () {
 
-    Route::resource('/promotion-theme', 'PromotionThemeController');
-    Route::get('/promotion-theme/{theme_id}/{index}/create', 'PromotionThemeController@create');
-    Route::get('/promotion-theme/{id}/edit', 'PromotionThemeController@edit');
-    Route::put('/promotion-theme/{id}', 'PromotionThemeController@update')->name('promotiontheme.update');
-    Route::delete('/promotion-theme/{id}', 'PromotionThemeController@destroy')->name('promotiontheme.destroy');
+    Route::resource('/promotion-theme', PromotionThemeController::class);
+    Route::get('/promotion-theme/{theme_id}/{index}/create', [PromotionThemeController::class, 'create']);
+    Route::get('/promotion-theme/{id}/edit', [PromotionThemeController::class, 'edit']);
+    Route::put('/promotion-theme/{id}', [PromotionThemeController::class, 'update'])->name('promotiontheme.update');
+    Route::delete('/promotion-theme/{id}', [PromotionThemeController::class, 'destroy'])->name('promotiontheme.destroy');
 
-    Route::get('/activity/create', 'ActivityController@create');
-    Route::get('/activity/{id}/edit', 'ActivityController@edit');
-    Route::put('/activity/{id}', 'ActivityController@update')->name('activity.update');
-    Route::delete('/activity/{id}', 'ActivityController@destroy')->name('activity.destroy');
+    Route::get('/activity/create', [ActivityController::class, 'create']);
+    Route::get('/activity/{id}/edit', [ActivityController::class, 'edit']);
+    Route::put('/activity/{id}', [ActivityController::class, 'update'])->name('activity.update');
+    Route::delete('/activity/{id}', [ActivityController::class, 'destroy'])->name('activity.destroy');
 
-    Route::get('/activity-approval', 'ActivityApprovalController@index')->name('activityapproval.index');
-    Route::post('/activity-approval/store', 'ActivityApprovalController@store')->name('activityapproval.store');
-    Route::put('/activity-approval/{id}', 'ActivityApprovalController@update')->name('activityapproval.update');
-    Route::post('/activity-approval/remove-stamp', 'ActivityApprovalController@removeStamp')->name('activityapproval.removeStamp');
-    Route::post('/activity-approval/saveKaizenEditInLine', 'ActivityApprovalController@saveKaizenEditInLine')->name('activityapproval.saveKaizenEditInLine');
+    Route::get('/activity-approval', [ActivityApprovalController::class, 'index'])->name('activityapproval.index');
+    Route::post('/activity-approval/store', [ActivityApprovalController::class, 'store'])->name('activityapproval.store');
+    Route::put('/activity-approval/{id}', [ActivityApprovalController::class, 'update'])->name('activityapproval.update');
+    Route::post('/activity-approval/remove-stamp', [ActivityApprovalController::class, 'removeStamp'])->name('activityapproval.removeStamp');
+    Route::post('/activity-approval/saveKaizenEditInLine', [ActivityApprovalController::class, 'saveKaizenEditInLine'])->name('activityapproval.saveKaizenEditInLine');
 
-    Route::get('/circlelevel/create', 'CircleLevelController@create');
-    Route::get('/circlelevel/{id}/edit', 'CircleLevelController@edit');
+    Route::get('/circlelevel/create', [CircleLevelController::class, 'create']);
+    Route::get('/circlelevel/{id}/edit', [CircleLevelController::class, 'store']);
 
-    Route::get('/promotion-circle/create', 'PromotionCircleController@create')->name('promotioncircle.create');
-    Route::get('/promotion-circle/{id}/edit', 'PromotionCircleController@edit');
-    Route::put('/promotion-circle/{id}', 'PromotionCircleController@update')->name('promotioncircle.update');
+    Route::get('/promotion-circle/create', [PromotionCircleController::class, 'create'])->name('promotioncircle.create');
+    Route::get('/promotion-circle/{id}/edit', [PromotionCircleController::class, 'edit']);
+    Route::put('/promotion-circle/{id}', [PromotionCircleController::class, 'update'])->name('promotioncircle.update');
 
-    Route::get('/theme/create', 'ThemeController@create');
-    Route::get('/theme/{id}/edit', 'ThemeController@edit');
-    Route::delete('/theme/{id}', 'ThemeController@destroy');
-    Route::get('/theme/report/{id}', 'ThemeController@report')->name('theme.report');
+    Route::get('/theme/create', [ThemeController::class, 'create']);
+    Route::get('/theme/{id}/edit', [ThemeController::class, 'edit']);
+    Route::delete('/theme/{id}', [ThemeController::class, 'destroy']);
+    Route::get('/theme/report/{id}', [ThemeController::class, 'report'])->name('theme.report');
 
 
 
-    Route::get('/test-export', 'ExcelExportController@excelExport')->name('excelExport')->middleware('auth');
-    Route::post('/export-input', 'ExcelExportController@dataInput')->name('dataInput')->middleware('auth');
+    Route::get('/test-export', [ExcelExportController::class, 'excelExport'])->name('excelExport')->middleware('auth');
+    Route::post('/export-input', [ExcelExportController::class, 'dataInput'])->name('dataInput')->middleware('auth');
 
-    Route::post('/upload-file/updateContentActivity', 'UploadFileController@updateContentActivity')->name('uploadfile.updateContentActivity');
-    Route::post('/upload-file/updateRequestToBossFileActivity', 'UploadFileController@updateRequestToBossFileActivity')->name('uploadfile.updateRequestToBossFileActivity');
-    Route::get('/upload-file/downloadFile/{id}', 'UploadFileController@downloadFile')->name('uploadfile.downloadFile');
+    Route::post('/upload-file/updateContentActivity', [UploadFileController::class, 'updateContentActivity'])->name('uploadfile.updateContentActivity');
+    Route::post('/upload-file/updateRequestToBossFileActivity', [UploadFileController::class, 'updateRequestToBossFileActivity'])->name('uploadfile.updateRequestToBossFileActivity');
+    Route::get('/upload-file/downloadFile/{id}', [UploadFileController::class, 'downloadFile'])->name('uploadfile.downloadFile');
 });
 
 
